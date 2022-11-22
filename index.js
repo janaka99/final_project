@@ -30,10 +30,14 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 //setting up static path
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/Public"));
 
 app.get("/", (req, res) => {
   res.render("home");
+});
+
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
 app.listen(3000, () => {
