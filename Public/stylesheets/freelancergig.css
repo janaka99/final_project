@@ -11,7 +11,7 @@
     margin-left: 50px;
     margin-top: 40px;
     height: 1000px;
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
     width: 500px;
 
 }
@@ -26,14 +26,14 @@
  }
 .slider{
     height: 400px;
-    width: 90%;
+    width: 100%;
     overflow: hidden;
-    border: 0.1px solid gray;
+    border: 0.1px solid lightgray;
  }
  .slider figure{
     position: relative;
     width: 300%;
-    margin: 1 2 2 2;
+    margin: 1;
     left: 0;
     animation: 10s slider infinite;
  }
@@ -110,32 +110,52 @@
     margin-left: 10px;
     margin-top: 40px;
     height: 1000px;
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
     width: 500px;
 }
 .price{
-    height: 110px;
-    border: 1px solid grey;
+    height: 120px;
+    border: 1px solid lightgrey;
     width: 100%;
+    position: relative;
 }
-.price h1{
+.img-price{
+    width: 100%;
+    height: 100%;
+}
+.price-txt{
+    position: absolute;
+    top: 0;
+    
+}
+.price-txt h3{
+   margin-left: 170px;
+   color:white;
+   text-shadow: 0 0 1px rgb(10, 10, 10); 
+    
+}
+
+.price-txt h1{
+    margin-left: 170px;
+    margin-bottom: 5px;
     color: orange;
-    text-align: center;
-}
-.price h4{
-   text-align: center;
-    color: black;
+    font-size: 32pt;
+   text-shadow: 0 1px 0 rgb(250, 243, 243); 
 }
 .deliverydetails{
-    height: 300px;
-    border: 1px solid grey;
+    height: 280px;
+    border: 1px solid lightgrey;
     width: 100%;
 }
-.deliverydetails h4{
-    color: black;
 
+.list-item{
+    list-style: none;
+    color: rgb(26, 24, 24);
      margin-left: 130px;
+     line-height: 45px;
+     font-family: Arial, Helvetica, sans-serif;
 }
+
 .imgDate{
     width: 30px;
     height: 30px;
@@ -145,7 +165,7 @@
 }
 .buyNow{
     height: 300px;
-    border: 1px solid grey;
+    border: 1px solid lightgrey;
     width: 100%;
 }
 .btnBuy{
@@ -183,4 +203,53 @@
 }
 .btnContact h3{
     color: white;
+}
+.profile{
+    height: 300px;
+    width: 98%;
+    padding: 4px;
+}
+.profile-box{
+        background-color: rgb(201, 32, 83);
+        height:200px;    
+    
+}
+.profile-box h3{
+    font-family: arial;
+    font-size: 14pt;
+    color: white;
+    text-align: center;
+
+}
+.profile-box h4{
+    font-family: arial;
+    font-size: 11pt;
+    color: rgb(180, 163, 163);
+    text-align: center;
+    font-style: italic;
+}
+
+.img-profile{
+    border-radius: 15px;
+    width: 30%;
+    margin-left: 160px;
+    margin-top: 15px;
+}
+.profile-bottom{
+    background-color: whitesmoke;
+    margin: 0;
+    height: 80px;
+}
+
+.btnView{
+    text-align: center;
+    color: white;
+    background-color: rgb(192, 19, 114);
+    border: 0;
+    border-radius: 5px;
+    margin-left: 170px;
+    margin-top: 15px;
+    width: 130px;
+    height: 40px;
+    box-shadow: 0 5px 10px rgba(244,67,54,0.5);
 }
