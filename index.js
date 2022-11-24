@@ -4,7 +4,8 @@ const app = express();
 
 //Import bodyparse to parse HTML body in a request
 
-//requiring routes
+// requiring routes
+const userRoutes = require("./routes/user");
 
 //create mysql connection
 // const db = mysql.createConnection({
@@ -35,6 +36,8 @@ app.use(express.static(__dirname + "/Public"));
 app.get("/", (req, res) => {
   res.render("home");
 });
+
+app.set("/user", userRoutes);
 
 app.get("/login", (req, res) => {
   res.render("login");
