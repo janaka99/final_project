@@ -1,0 +1,255 @@
+.container{
+    margin-top: 50px;
+    max-width: 1280px;
+    width: 90%;
+    margin-inline: auto;
+    background-color: white;
+   display: flex;
+    
+}
+.description{
+    margin-left: 50px;
+    margin-top: 40px;
+    height: 1000px;
+    border: 1px solid lightgrey;
+    width: 500px;
+
+}
+.description h4{
+    font-family: arial;
+   color: blue;
+   margin-left: 10px;
+}
+.description h2{
+    margin-left: 10px;
+    font-family: arial;
+ }
+.slider{
+    height: 400px;
+    width: 100%;
+    overflow: hidden;
+    border: 0.1px solid lightgray;
+ }
+ .slider figure{
+    position: relative;
+    width: 300%;
+    margin: 1;
+    left: 0;
+    animation: 10s slider infinite;
+ }
+ .slider figure img{
+    float: left;
+    width: 20%;
+ }
+
+ @keyframes slider{
+    0%{left: 0;}
+    20%{left: 0;}
+    45%{left: -100%;}
+    50%{left: -100%;}
+    70%{
+        left: -200%;
+    }
+    80%{left: -200%;}
+    100%{left: 0;}
+ }
+@-webkit-keyframes slide_animation{
+    0%{left:0px;}
+    10%{left:0px;}
+    20%{left:-1200px;}
+    30%{left:-1200px;}
+    40%{left:-2400px;}
+    50%{left:-2400px;}
+    60%{left:-1200px;}
+    70%{left:-1200px;}
+    80%{left:0px;}
+    90%{left:0px;}
+    100%{left:0px;}
+
+}
+.slider{
+      width: 100%;
+      height: 200px;
+      margin: 15 15 0 0;
+      -webkit-animation-name:slide_animation ;
+      -webkit-animation-duration: 3s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-direction: alternate;
+      -webkit-animation-play-state: running;
+}
+
+
+.note{
+    height: 400px;
+    width: 100%;
+}
+.note h2{
+    margin-left: 20px;
+    font-family: arial;
+    color: grey;
+}
+.dIntro{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 10pt;
+    word-spacing: 2px;
+   
+}
+.note h4{
+    margin-left: 20px;
+    font-family: arial;
+    color: grey;
+}
+.dPromo{
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 10pt;
+    word-spacing: 2px;
+}
+.priceLine{
+    margin-left: 10px;
+    margin-top: 40px;
+    height: 1000px;
+    border: 1px solid lightgrey;
+    width: 500px;
+}
+.price{
+    height: 120px;
+    border: 1px solid lightgrey;
+    width: 100%;
+    position: relative;
+}
+.img-price{
+    width: 100%;
+    height: 100%;
+}
+.price-txt{
+    position: absolute;
+    top: 0;
+    
+}
+.price-txt h3{
+   margin-left: 170px;
+   color:white;
+   text-shadow: 0 0 1px rgb(10, 10, 10); 
+    
+}
+
+.price-txt h1{
+    margin-left: 170px;
+    margin-bottom: 5px;
+    color: orange;
+    font-size: 32pt;
+   text-shadow: 0 1px 0 rgb(250, 243, 243); 
+}
+.deliverydetails{
+    height: 280px;
+    border: 1px solid lightgrey;
+    width: 100%;
+}
+
+.list-item{
+    list-style: none;
+    color: rgb(26, 24, 24);
+     margin-left: 130px;
+     line-height: 45px;
+     font-family: Arial, Helvetica, sans-serif;
+}
+
+.imgDate{
+    width: 30px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 100px;
+
+}
+.buyNow{
+    height: 300px;
+    border: 1px solid lightgrey;
+    width: 100%;
+}
+.btnBuy{
+    margin-left: 100px;
+    border: 0px;
+    border-radius: 3px;
+    text-align: center;
+    width: 300px;
+    height: 50px;
+    font-weight: bold;
+    background-color: red;
+    font-style: arial;
+    
+}
+.intro{
+    text-align: center;
+    font-family: Arial;
+    font-size: 10pt;
+    color: brown;
+}
+
+.btnBuy h3{
+    color: white;
+}
+.btnContact{
+    margin-left: 100px;
+    border: 0px;
+    border-radius: 3px;
+    text-align: center;
+    width: 300px;
+    height: 50px;
+    font-weight: bold;
+    background-color: red;
+    font-style: arial;
+}
+.btnContact h3{
+    color: white;
+}
+.profile{
+    height: 300px;
+    width: 98%;
+    padding: 4px;
+}
+.profile-box{
+        background-color: rgb(201, 32, 83);
+        height:200px;    
+    
+}
+.profile-box h3{
+    font-family: arial;
+    font-size: 14pt;
+    color: white;
+    text-align: center;
+
+}
+.profile-box h4{
+    font-family: arial;
+    font-size: 11pt;
+    color: rgb(180, 163, 163);
+    text-align: center;
+    font-style: italic;
+}
+
+.img-profile{
+    border-radius: 15px;
+    width: 30%;
+    margin-left: 160px;
+    margin-top: 15px;
+}
+.profile-bottom{
+    background-color: whitesmoke;
+    margin: 0;
+    height: 80px;
+}
+
+.btnView{
+    text-align: center;
+    color: white;
+    background-color: rgb(192, 19, 114);
+    border: 0;
+    border-radius: 5px;
+    margin-left: 170px;
+    margin-top: 15px;
+    width: 130px;
+    height: 40px;
+    box-shadow: 0 5px 10px rgba(244,67,54,0.5);
+}

@@ -46,6 +46,9 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register");
 });
+app.get("/gig", (req, res) => {
+  res.render("Freelancer/gig");
+});
 
 app.listen(3000, () => {
   console.log("Server has started");
