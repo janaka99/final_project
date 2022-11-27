@@ -1,0 +1,302 @@
+.dashboard-container{
+    margin-top: 50px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin-inline: auto;
+   background-color: rgb(245, 244, 244);
+}
+.dashboard-account{
+    margin-left: 3%;
+    margin-top: 15px;
+    background-color: white;
+    width: 30%;
+   height: 600px;
+   box-shadow:0 2px 3px  rgba(180, 178, 178, 0.966) ;
+}
+.dashboard-nameImg{
+    display: flex;
+    width: 100%;
+    height: 80px;
+        border: 1px solid lightgray;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+}
+
+.dashboard-img{
+    width: 70px;
+    margin-left: 20px;
+    margin-top: 15px;
+    border-radius: 60px;
+}
+.dashboard-name h3{
+    font-family: 'Poppins',Arial,Helvetica,sans-serif;
+    color: rgb(124, 117, 117);
+    margin-left: 20px;
+    font-weight: 550;
+    margin-top: 30px;
+}
+.dashboard-detaillist{
+    width: 100%;
+    height:200px ;
+}
+.dashboard-list{
+    list-style: none;
+    font-family: 'Poppins',Arial,Helvetica,sans-serif;
+    font-size: 11pt;
+    color:rgb(151, 148, 148);
+    font-weight: 550;
+    margin-top: 30px;
+}
+.dashboard-pricetag{
+    height: 50px;
+    width: 100%;
+}
+.dashboard-pricetag h4{
+    text-align: center;
+    font-family: 'Poppins',Arial,Helvetica,sans-serif;
+    font-size: 13pt;
+    color:rgb(51, 50, 50);
+    font-weight: 500;
+    font-weight: bold;
+}
+.dashboard-inbox{
+    width:100%;
+    border: 1px solid lightgray;
+         border-left: none;
+         border-right: none;
+         display: flex;
+
+}
+.dashboard-inbox h4{
+    margin-left: 20%;
+    font-family: 'Poppins',Arial,Helvetica,sans-serif;
+        color:rgb(145, 143, 143);
+        font-weight: bold;
+
+}
+
+
+.dashboard-viewAll h3{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-left: 140px;  
+}
+.dashboard-viewAll{
+    text-decoration: none;
+}
+.dashboard-description{
+    width: 66%;
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top: 15px;
+}
+.dashboard-activeOrder{
+    height: 50px;   
+    width: 100%;
+    background-color: white;
+     display: flex;
+    box-shadow:0 1px 3px  rgba(180, 178, 178, 0.966)  ;
+    border: 1px solid lightgray; 
+}
+.dashboard-activeOrder h4{
+    margin-left: 8px;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.dashboard-orderDrop{
+    width: 160px;
+    margin-left: 60%;
+    margin-top:5px ;
+    margin-bottom:5px;
+    border: 1px solid lightgray;
+}
+
+.dashboard-listhead {
+    text-decoration: none;
+
+}
+
+.dashboard-listhead h4{
+    color: rgb(97, 95, 95);
+    margin: 10px 10px 0 0;
+    text-align: center;
+    font-family: monospace;
+    text-decoration: none;
+}
+
+.dashboard-orderDrop:hover ul.dashboard-drop{
+    display: block;
+}
+
+.dashboard-orderDrop ul li{
+    display: block;
+    color: rgb(94, 94, 94);
+    font-family: monospace;
+    background-color:rgb(255, 255, 255) ;
+    height: 30px;
+    font-size: 10pt;
+    text-align: center;
+    margin-left: -40px;
+    width: 100%;
+    list-style: none;
+    border: 1px solid lightgray; 
+
+}
+.dashboard-orderDrop ul.dashboard-drop{
+        display: none;
+        width: 100%;
+        z-index: 999;
+}
+
+.dashboard-upgration{
+    height: 500px;   
+    width: 100%;
+    margin-top: 5%;
+    background-color: white;
+        box-shadow:0 1px 3px  rgba(180, 178, 178, 0.966)  ;
+    border: 1px solid lightgray; 
+
+}
+.dashboard-topseller{
+    width: 100%;
+    height: 20%
+}
+
+.dashboard-topseller h1{
+    color: rgb(92, 88, 88);
+    margin-left: 3%;
+    margin-top: 5%;
+    font-family:Macan, "Helvetica Neue", Helvetica, Arial, sans-serif;;
+    font-weight: 400px;
+}
+.dashboard-topseller p{
+    color: rgb(150, 147, 147);
+    letter-spacing: 1px;
+    margin-left: 3%;
+    margin-right: 3%;
+    line-height: 24px;
+    word-spacing: 4px;
+    font-family: Macan, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.dashboard-steps{
+    width: 100%;
+    height: 65%;
+    display: flex;
+    margin-top: 7%;
+}
+.dashboard-step1{
+    width: 30%;
+    height: 95%;
+}
+.dashboard-step1 h4{
+    color: rgb(92, 88, 88);
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;;
+    margin-left: 5%;
+
+}
+.dashboard-step1 p{
+    color: rgb(136, 135, 135);
+    letter-spacing: 1px;
+    font-size: 10pt;
+    margin-left: 5%;
+    margin-right: 3%;
+    line-height: 18px;
+    word-spacing: 2px;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.dashboard-btnShare{
+        width: 60%;
+        box-shadow:0 2px 3px  rgba(180, 178, 178, 0.966) ;
+        height: 40px;
+        margin-left: 20%;
+        margin-top: 12%;
+        border-radius: 5px;
+        border: 1px solid rgb(52, 52, 235);
+        background-color: white;
+}
+.dashboard-btnShare h3{
+    text-align: center;
+    font-size: 11pt;
+    color: blue;
+    font-weight: bold;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif ;
+
+}
+.dashboard-step2{
+    width: 30%;
+    height: 95%;
+    margin-left: 3%;
+}
+.dashboard-step2 h4{
+    color: rgb(92, 88, 88);
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;;
+    margin-left: 5%;
+}
+.dashboard-step2 p{
+    color: rgb(136, 135, 135);
+    letter-spacing: 1px;
+    font-size: 10pt;
+    margin-left: 5%;
+    margin-right: 3%;
+    line-height: 18px;
+    word-spacing: 2px;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+.dashboard-btnExplore{
+    width: 60%;
+    box-shadow:0 2px 3px  rgba(180, 178, 178, 0.966) ;
+    height: 40px;
+    margin-left: 20%;
+    margin-top: 5%;
+    border-radius: 5px;
+    border: 1px solid rgb(52, 52, 235);
+    background-color: white;
+}
+.dashboard-btnExplore h3{
+    text-align: center;
+    font-size: 11pt;
+    color: blue;
+    font-weight: bold;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif ;
+
+}
+.dashboard-step3{
+    width: 30%;
+    height: 95%;
+    margin-left: 3%;
+}
+.dashboard-step3 h4{
+    color: rgb(92, 88, 88);
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;;
+    margin-left: 5%;
+}
+.dashboard-step3 p{
+    color: rgb(136, 135, 135);
+    letter-spacing: 1px;
+    font-size: 10pt;
+    margin-left: 5%;
+    margin-right: 3%;
+    line-height: 18px;
+    word-spacing: 2px;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+.dashboard-btnWatch{
+    width: 60%;
+    box-shadow:0 2px 3px  rgba(180, 178, 178, 0.966) ;
+    height: 40px;
+    margin-left: 20%;
+    margin-top: 12%;
+    border-radius: 5px;
+    border: 1px solid rgb(52, 52, 235);
+    background-color: white;
+}
+.dashboard-btnWatch h3{
+    text-align: center;
+    font-size: 11pt;
+    color: blue;
+    font-weight: bold;
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif ;
+
+}
