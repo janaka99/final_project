@@ -65,14 +65,6 @@ app.get("/login", (req, res) => {
 app.get("/gig", (req, res) => {
   res.render("Freelancer/gig");
 });
-app.get("/gig", (req, res) => {
-  res.render("Freelancer/free");
-});
-app.get("/admin", (req, res) => {
-  res.render("Admin/adminTemplate");
-});
-
-app.use("/user/", userRoutes);
 
 app.listen(3000, () => {
   console.log("Server has started");
