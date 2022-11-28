@@ -8,13 +8,13 @@ body{
     box-sizing:border-box ;
     overflow-x: hidden;
 }
-.container{
+.header-container{
     height:70px;
     width:100%;
     position: relative;
 }
 
-.nav{
+.header-nav{
     max-width:1280px;
     width:90%;
     margin: 0 auto;
@@ -23,18 +23,18 @@ body{
     justify-content: space-between;
     align-items: center;
 }
-.logo{
+.header-logo{
     font-size: 30px;
     font-weight: 600;
     cursor: pointer;
     display: flex;
 }
-.logo span:nth-child(1){
+.header-logo span:nth-child(1){
     color: #FF7300;
     border: 2px solid #FF7300;
     padding-left: 5px;
 }
-.logo span:nth-child(2){
+.header-logo span:nth-child(2){
     background-color: #FF7300;
     color: black !important;
     width: 100%;
@@ -42,20 +42,20 @@ body{
     border: 2px solid #FF7300;
     padding-right: 5px;
 }
-.navigation ul{
+.header-navigation ul{
     display: flex;
     height: 100%;
     align-items: center;
     
 }
-.navigation ul li{
+.header-navigation ul li{
     list-style: none;
     margin-left: 20px;
     /* height: 100%;; */
 
 
 }
-.navigation ul li a{
+.header-navigation ul li a{
     text-decoration: none;
     font-weight: 600;
     font-size: 16px;
@@ -64,10 +64,10 @@ body{
     font-weight: 600;
 }
 
-.navigation ul .item a{
+.header-navigation ul .header-item a{
     color: #767676cf;
 }
-.navigation ul .item a:after{
+.header-navigation ul .header-item a:after{
     content: "";
     display: block;
     width: 0;
@@ -76,7 +76,7 @@ body{
     margin-inline: auto;
 }
 
-.navigation ul .item a:hover::after{
+.header-navigation ul .header-item a:hover::after{
     content: "";
     display: block;
     width: 20px;
@@ -85,12 +85,12 @@ body{
     margin-inline: auto;
     transition: all 0.2s ease-in;
 }
-.navigation ul .item a:hover{
+.header-navigation ul .header-item a:hover{
     color:#FF7300 ;
     transition: all 0.2s ease-in;
 }
 
-.navigation ul  .signin-btn{
+.header-navigation ul  .header-signin-btn{
     padding: 10px 15px;
     background-color:#2ECC71 ;
     border-radius: 4px;
@@ -99,20 +99,20 @@ body{
 
 }
 
-.navigation ul  .signin-btn a{
+.header-navigation ul  .header-signin-btn a{
     color: #ffffff;
     cursor: pointer;
     font-size: 14px;
 }
 
-.navigation ul  .register-btn a{
+.header-navigation ul  .header-register-btn a{
     color: #ffffff;
     cursor: pointer;
     font-size: 14px;
 
 }
 
-.navigation ul  .register-btn{
+.header-navigation ul  .header-register-btn{
     background-color: #FF7300;   
     padding: 10px 15px;
     transition: all 0.3s ease-in-out;
@@ -121,18 +121,18 @@ body{
     color: #ffffff;
 
 }
-.navigation ul  .register-btn:hover{
+.header-navigation ul  .header-register-btn:hover{
     box-shadow: 4px 4px 15px 1px #55555561;
     transition: all 0.3s ease-in-out;
 
 }
-.navigation ul  .signin-btn:hover{
+.header-navigation ul  .header-signin-btn:hover{
     box-shadow: 4px 4px 15px 1px #55555561;
     transition: all 0.3s ease-in-out;
 
 }
 
-.burger{
+.header-burger{
     height:30px ;
     display: flex;
     flex-direction: column;
@@ -142,18 +142,18 @@ body{
     cursor: pointer;
     display: none;
 }
-.burger div{
+.header-burger div{
     width: 30px;
     height: 5px;
     background-color: #000;
 
 }
 @media screen and (max-width:768px) {
-    .burger{
+    .header-burger{
         display: flex;
     }
 
-    .navigation{
+    .header-navigation{
         position: absolute;
         top: 50px;
         right: 0;
@@ -163,16 +163,16 @@ body{
         transform:translateX(100%);
         transition: all 0.5s ease-in-out;   
     }
-    .navigation{
+    .header-navigation{
         border-left: 1px solid #cccccc66;
     }
-    .navigation ul{
+    .header-navigation ul{
         display: flex;
         flex-direction: column;
         justify-content: space-around;
     }
 
-    .show{
+    .header-show{
         transform:translateX(0);
         transition: all 0.5s ease-in-out;   
 
