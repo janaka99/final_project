@@ -1,0 +1,143 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.admin-container {
+    width:100%;
+    min-height: 100vh;
+    display: flex;
+    background-color: #F4F7FA;
+}
+
+.admin-sidebar{
+    width:270px;
+    height:100vh;
+    background-color:#1F2130;
+    overflow-x: hidden;
+}
+
+.header-logo{
+    font-size: 30px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    width: fit-content;
+    padding: 20px 0;
+    margin-inline: auto;
+
+}
+.header-logo span:nth-child(1){
+    color: #FF7300;
+    border: 2px solid #FF7300;
+    padding-left: 5px;
+}
+.header-logo span:nth-child(2){
+    background-color: #FF7300;
+    color: black !important;
+    width: 100%;
+    height: 100%;
+    border: 2px solid #FF7300;
+    padding-right: 5px;
+}
+
+
+.admin-sidebar ul{
+    list-style: none;
+    padding-left: 20px;
+}
+.admin-sidebar ul li{
+    list-style: none;
+    color:#ccc;
+    margin-bottom: 15px;
+}
+.admin-sidebar ul .admin-sidebar-navigation-title{
+    list-style: none;
+    color:#ccc;
+    font-weight: 700;
+   text-transform: uppercase;
+   font-size: 12px;
+    margin: 30px 0 20px 0;
+}
+.admin-sidebar ul li a{
+    text-decoration: none;
+    color:rgba(204, 204, 204, 0.811);
+    font-size: 16px;
+    margin-left: 20px;
+}   
+
+/* /////////////////////////////////ADMIN_LAYOUT///////////////// */
+
+
+.admin-layout{
+    width: 100%;
+    min-height: 100vh;
+}
+.admin-layout-header{
+    height: 70px;
+    width: 90%;
+    margin-inline: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+}
+.admin-layout-header-btn{
+    cursor: pointer;
+    color:#FF7300 ;
+
+}
+.admin-layout-header-btn:hover{
+    color: #1F2130;
+
+}
+.admin-layout-header-content{
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color:#1F2130 ;
+    display: none;
+}
+.admin-layout-header-content-profile{
+    position: relative;
+}
+.admin-layout-header-content-profile .admin-layout-header-content-profile-image{
+    width: 50px;
+    height: 50px;
+    background-color: #ccc;
+    margin-top: 20px;
+    margin-inline: auto;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.admin-layout-header-content-profile .admin-layout-header-content-profile-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.admin-layout-header-content-profile ul{
+    list-style: none;
+    padding: 30px 40px;
+}
+
+.admin-layout-header-content-profile ul li{
+    margin-bottom: 20px;
+    list-style: none;
+}
+
+.admin-layout-header-content-profile ul li a{
+    font-size: 14px;
+    text-decoration: none;
+    color: #ccc;
+    cursor: pointer;
+
+}
+.admin-layout-header-content-profile ul li i{
+    margin-right: 20px;
+    color: #fff;
+}
+
+.admin-layout-header-content-hide{
+    display: flex;
+}
