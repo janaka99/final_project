@@ -300,3 +300,115 @@
     font-family:"Helvetica Neue", Helvetica, Arial, sans-serif ;
 
 }
+
+  
+  .dashboard-slider{
+    width: 100%;
+    height: 250px;
+    border-radius: 2px;
+    overflow: hidden;
+       margin-top: 5%;
+  }
+  
+  .dashboard-slides{
+    width: 500%;
+    height: 100%;
+    display: flex;
+  }
+  
+  .dashboard-slides input{
+    display: none;
+  }
+  
+  .dashboard-slide{
+    width: 20%;
+    transition: 2s;
+  }
+  
+  .dashboard-slide img{
+    width: 100%;
+    height: auto;
+
+  }
+  
+  /*css for manual slide navigation*/
+  
+  .dashboard-navigation-manual{
+    position: absolute;
+    width: 800px;
+    margin-top: -40px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .manual-btn{
+    border: 2px solid #c2bdbd;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 1s;
+
+  }
+  
+  .manual-btn:not(:last-child){
+    margin-right: 40px;
+  }
+  
+  .manual-btn:hover{
+    background: #9d9e9ee7;
+  }
+  
+  #radio1:checked ~ .first{
+    margin-left: 0;
+  }
+  
+  #radio2:checked ~ .first{
+    margin-left: -20%;
+  }
+  
+  #radio3:checked ~ .first{
+    margin-left: -40%;
+  }
+  
+  #radio4:checked ~ .first{
+    margin-left: -60%;
+  }
+  
+  /*css for automatic navigation*/
+  
+  .dashboard-navigation-auto{
+    position: absolute;
+    display: flex;
+    width: 800px;
+    justify-content: center;
+    margin-top: 210px;
+    color: rgba(255, 255, 255, 0.61);
+  }
+  
+  .dashboard-navigation-auto div{
+    border: 2px solid #ebebebd8;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 1s;
+  }
+  
+  .dashboard-navigation-auto div:not(:last-child){
+    margin-right: 40px;
+  }
+  
+  #radio1:checked ~ .dashboard-navigation-auto .auto-btn1{
+    background: #e0dddd;
+  }
+  
+  #radio2:checked ~ .dashboard-navigation-auto .auto-btn2{
+    background: #e0dddd;
+  }
+  
+  #radio3:checked ~ .dashboard-navigation-auto .auto-btn3{
+    background: #e0dddd;
+  }
+  
+  #radio4:checked ~ .dashboard-navigation-auto .auto-btn4{
+    background:#e0dddd;
+  }
+        
