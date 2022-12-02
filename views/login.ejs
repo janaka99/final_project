@@ -11,7 +11,20 @@
     
     
     <div class="container">
-        <!-- <background-image : url(artwork1.jpg); -->
+
+        <% if(success ){ %>  
+            <h4><%= success  %> </h4>
+        <% }%> 
+            <% if(error ){ %>  
+                <h4><%= error  %> </h4>
+            <% } %> 
+            <form action="/user/login" method="post">
+
+                <input type="text" name="email">
+                <input type="text" name="password">
+                <button type="submit">Login</button>
+            </form>
+            <a href="/user/forgot-password">reset pass</a>
     </div>
 </body>
 </html>

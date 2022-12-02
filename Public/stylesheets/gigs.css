@@ -1,0 +1,110 @@
+.gigs-search{
+    width: 90%;
+    max-width: 1280px;
+    margin: 50px auto;
+    display: flex;
+    height: 50px;
+    border: 1px solid lightgray;
+    background-color: red;
+}
+.gigs-search input{
+    height: 100%;
+    outline: none;
+    flex-grow: 1;
+    padding: 0 10px;
+    border: none;
+}
+.gigs-search button{
+    width: 100px;
+    height: 100%;
+    text-align: center;
+    border: none;
+    background-color: #2ECC71;
+    font-size: 14;
+    font-weight: 600;
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+
+}
+.gigs-search button:hover{
+    background-color: #27a85c;
+    transition: all 0.2s ease-in-out;
+}
+
+.gigs-container{
+    width: 90%;
+    max-width: 1280px;
+    margin: 50px auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.up-orders-gig{
+    width: 100%;
+    border: 1px solid lightgray;
+    height: fit-content;
+    cursor: pointer;
+}
+.up-orders-gig-image{
+    width: 100%;
+    aspect-ratio: 3/2;
+}
+.up-gig-desc{
+    width: calc(100% - 20px);
+    padding: 10px;
+}
+.up-gig-profile{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.up-gig-profile img{
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.up-gig-profile h4{
+    font-size: 15px;
+}
+
+.up-gig-desc p{
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.805);
+    margin-bottom: 10px;
+}
+
+.up-gig-desc h4{
+    font-size: 14px;
+
+}
+.up-gig-desc h4 span{
+    color: #fda116;
+    font-size: 14px;
+}
+
+.up-orders-gig h3{
+    text-align: right;
+    margin: 10px;
+
+}
+.up-orders-gig h3 span{
+    font-size: 15px;
+    margin-right: 15px;
+}
+
+.gigs-pagination{
+    display: flex;
+    width: 90%;
+    max-width: 1280px;
+    margin: 50px auto;
+    justify-content: center;
+}
+
+.gigs-pagi{
+    padding: 10px 12px;
+    margin: 0 10px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+}

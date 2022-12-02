@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/settings.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="register.cc">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %> 
+        <div class="user-settings-container">
+            <div class="user-settings-content user-settings-content-1">
+                <form action="">
+                    <div class="user-settings-table-item">
+                        <label   for="user-settings-user-bio">Bio</label>
+                        <textarea name="" id="user-settings-user-bio"   maxlength="100"></textarea>
+                    </div>
+                    <div class="user-settings-table-item">
+                        <label id="user-settings-user-desc-label" for="user-settings-user-desc">Description</label>
+                        <textarea name="" id="user-settings-user-desc"   maxlength="768"></textarea>
+                    </div>
+                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                </form>
+            </div>
+            <div class="user-settings-content">
+                <form action="">
+                    <div class="user-settings-table-item">
+                        <label for="">Username</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-item">
+                        <label for="">First Name</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-item">
+                        <label for="">Last Name</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                </form>
+            </div>
+            <div class="user-settings-content">
+                <form action="">
+                    <h4 style="color: #2ECC71;">Verified</h4>
+                    <div class="user-settings-table-item">
+                        <label for="">Phone  Number</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                </form>
+            </div>
+            <div class="user-settings-content">
+                <form action="">
+                    <h4 style="color: #2ECC71;">Verified</h4>
+                    <div class="user-settings-table-item">
+                        <label for="">Email</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                </form>
+            </div>
+            <div class="user-settings-content">
+                <form action="">
+                    <div class="user-settings-table-item">
+                        <label for="">Address 1</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-item">
+                        <label for="">Address 2</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-item">
+                        <label for="">Address 3</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                </form>
+            </div>
+
+            <div class="user-settings-content">
+                <form action="">
+                    <div class="user-settings-table-item">
+                        <label for="">Online</label>
+                        <input type="text">
+                    </div>
+                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                </form>
+            </div>
+        </div>
+    <%- include("../partials/footer.ejs") %> 
+    <script  src="javascript/header.js"></script>
+</body>
+    
+
+</html>
+
+
+
+
+
+

@@ -11,7 +11,9 @@ const Con = require("../connection/mysql");
 const jwt = require("jsonwebtoken");
 const { sendVerifyEmail, sendResetEmail } = require("../connection/nodemailer");
 
-router.get("/login", (req, res) => {});
+router.get("/login", (req, res) => {
+  res.render("login");
+});
 
 router.get("/check", authenticateToken, (req, res) => {
   console.log(req.user);
@@ -21,6 +23,7 @@ router.post("/login", async (req, res) => {
   try {
     //Get data from HTML request body
     const data = req.body;
+
     //validate data using Joi validation package
     const value = await loginSchema.validateAsync(data);
 
@@ -43,48 +46,17 @@ router.post("/login", async (req, res) => {
           );
           console.log(pwCheck);
           if (!pwCheck) {
-            console.log("Password not found");
-            //       console.log(result[0].username);
-            //       const user = {
-            //         username: result[0].username,
-            //         email: result[0].email,
-            //       };
-            //       const accessToken = jwt.sign(
-            //         user,
-            //         process.env.JSONWEBTOKEN_SECRET
-            //       );
-
-            //       res.json({ accessToken: accessToken });
+            console.log("Password or username incorrect");
           } else {
             console.log("macthed");
+            const user = {
+              username: result[0].username,
+              email: result[0].email,
+            };
+            const accessToken = jwt.sign(user, process.env.JSONWEBTOKEN_SECRET);
+
+            res.json({ accessToken: accessToken });
           }
-          // await bcrypt
-          //   .compare(value.password, result[0].password)
-          //   .then((match) => {
-          //     if (match) {
-          //       console.log("user matched");
-          //       console.log(result[0].username);
-          //       const user = {
-          //         username: result[0].username,
-          //         email: result[0].email,
-          //       };
-          //       const accessToken = jwt.sign(
-          //         user,
-          //         process.env.JSONWEBTOKEN_SECRET
-          //       );
-
-          //       res.json({ accessToken: accessToken });
-          //     } else {
-          //       console.log("user unmatched");
-          //     }
-          // });
-          // (err, rs) => {
-          //     if (rs) {
-
-          //     } else {
-          //     }
-          //   }
-          // );
         }
       }
     });
@@ -147,9 +119,6 @@ router.post("/register", async (req, res) => {
 router.get("/register", (req, res) => {
   res.render("register");
 });
-router.post("/login", (req, res) => {
-  console.log(req.body);
-});
 
 //verify email
 router.get("/verifyEmail", async (req, res) => {
@@ -204,6 +173,8 @@ router.post("/forgot-password", async (req, res) => {
         result[0] == null
       ) {
         console.log("Email not found");
+        req.flash("error", "Email not Registered");
+        res.redirect("back");
         //render email not found page
       } else {
         var token = crypto.randomBytes(32).toString("hex");
@@ -217,13 +188,21 @@ router.post("/forgot-password", async (req, res) => {
         Con.query(deleteQuery, (err, result) => {
           if (err) {
             console.log(err);
+            req.flash("error", "Something went wrong try again");
+            res.redirect("back");
           } else {
             const sqlQuery3 = `INSERT INTO verificationTokens(tokenType,token,userId) values("passwordreset",'${accessToken}',${userId})`;
             Con.query(sqlQuery3, (err, result) => {
               if (err) {
-                console.log(err);
+                req.flash("error", "Something went wrong try again");
+                res.redirect("back");
               } else {
                 sendResetEmail(email, accessToken);
+                req.flash(
+                  "success",
+                  "Password reset email successfully sent to your email"
+                );
+                res.redirect("back");
               }
             });
           }
@@ -235,7 +214,6 @@ router.post("/forgot-password", async (req, res) => {
 
 router.get("/reset/reset-password/:token", async (req, res) => {
   const token = req.params.token;
-  console.log("reached ", token);
   if (token) {
     const sqlQuery = `SELECT * FROM verificationTokens WHERE token='${token}'`;
     Con.query(sqlQuery, (err, result) => {
@@ -251,7 +229,7 @@ router.get("/reset/reset-password/:token", async (req, res) => {
           res.render("404error");
         } else {
           //render reset password form
-          console.log("work for here");
+
           res.render("Freelancer/resetPassword", { prsToken: token });
         }
       }
@@ -268,7 +246,7 @@ router.post("/reset/reset-password/:token", async (req, res) => {
     const value = await resetPasswordSchema.validate({
       password: data.password,
     });
-
+    console.log(value);
     if (value.error) {
       console.log(value.error.details[0].message);
       req.flash("error", value.error.details[0].message);
@@ -281,7 +259,7 @@ router.post("/reset/reset-password/:token", async (req, res) => {
         const sqlQuery = `SELECT * FROM verificationTokens WHERE token='${token}'`;
         Con.query(sqlQuery, async (err, result) => {
           if (err) {
-            throw err;
+            res.render("404error");
           } else {
             if (
               result == null ||
@@ -289,22 +267,26 @@ router.post("/reset/reset-password/:token", async (req, res) => {
               result == undefined ||
               result[0] == null
             ) {
-              console.log("Email Can not found...");
+              res.render("404error");
             } else {
-              console.log("query executed");
-              //render reset password form
               const salt = await bcrypt.genSalt(
                 parseInt(process.env.BCRYPT_SALT_ROUNDS)
               );
-              console.log(salt, "asdasd");
-              const hashedPassword = await bcrypt.hash(value.password, salt);
+              const hashedPassword = await bcrypt.hash(
+                value.value.password,
+                salt
+              );
+              console.log("hashed ", hashedPassword);
               const sqlquery5 = `UPDATE User SET password=? WHERE id=(select userId from verificationTokens where token='${token}' and tokenType='passwordreset' )`;
               Con.query(sqlquery5, [hashedPassword], (err, result) => {
                 if (err) {
-                  console.log(err);
-                } else {
-                  req.flash("sucess", "Password reset successful");
+                  req.flash("error", "Something went wrong, please try again!");
                   res.redirect("back");
+                } else {
+                  const sqlQuery6 = `DELETE FROM verificationTokens WHERE token='${token}' and tokenType='passwordreset'`;
+                  Con.query(sqlQuery6);
+                  req.flash("sucess", "Password reset successful Please Login");
+                  res.render("login");
                 }
               });
             }
@@ -313,8 +295,18 @@ router.post("/reset/reset-password/:token", async (req, res) => {
       }
     }
   } else {
-    console.log("no token");
+    res.render("404error");
   }
+});
+
+//////////user profile///////////////////////////////////////////////////
+
+router.get("/settings", (req, res) => {
+  res.render("User/settings");
+});
+
+router.get("/profile", (req, res) => {
+  res.render("User/profile");
 });
 
 module.exports = router;

@@ -12,29 +12,23 @@
     <title>Document</title>
 
 </head>
-<body>
+<body >
     <%- include("../partials/header.ejs") %> 
        <div class="freelancegig-container" >
-            <div class="description">
-                <div class="left-description"></div>
-                <div class="right-description"></div>
-                <h4>DETAILS</h4>
-                <h2>I Will Develop 3D Paintings & Gigs</h2>
-                <div class="slider">
-                    <figure>
-                        <img  src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/109611151/original/28340fdacf3f1bdda5e906332213015053f4e49b/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
-                        <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/109611151/original/cb565efe7420c74428bd5ed55233bf5e1ae9111e/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
-                       <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/109611151/original/97e0ab70ac80b9bbe8599f1e95f8f4935826aa8c/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
-                       <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/558c1dfc0596b3c4838a7ba39a830229-1660991930/Presentation_File_3/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
-                       <img src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/33e266f5c96e2d635844d3d32b29dafc-1661252841/Presentation_File_3/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
-                    </figure>
+            <div class="fgig-description-left">
+                <h2>I Will Develop 3D Paintings & Gigs <span style="color: rgba(136, 136, 136, 0.8);">(41)</span></h2>
+                <div class="dgig-slider">
+                    <img id="dgig-rating-profile-img" src="" alt="">
                 </div>
-                <div class="note">
-                        <br><h2>Description</h2>
-                        <p class="dIntro">You Are At The Perfect Place For All Types Of Creative Logo Design.  We Understand The Value Of Your Logo And Surely Create A Unique Design As Per Your Requirement From Scratch.</p>
-                        <br><br>
-                         <h4>Why You Should Hire Me</h4>
-                        <p class="dPromo">Professional And Creative Designs With High Efficiency.
+                <div class="dgig-slider-images">
+                    <img class="dgig-rating-profile-imges"  src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs2/109611151/original/28340fdacf3f1bdda5e906332213015053f4e49b/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
+                    <img class="dgig-rating-profile-imges"  src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs/109611151/original/cb565efe7420c74428bd5ed55233bf5e1ae9111e/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
+                   <img class="dgig-rating-profile-imges"  src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/gigs3/109611151/original/97e0ab70ac80b9bbe8599f1e95f8f4935826aa8c/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
+                   <img class="dgig-rating-profile-imges"  src="https://fiverr-res.cloudinary.com/images/t_main1,q_auto,f_auto,q_auto,f_auto/attachments/delivery/asset/558c1dfc0596b3c4838a7ba39a830229-1660991930/Presentation_File_3/design-3-professional-logo-for-you-in-24-hours.jpg" alt="">
+                </div>
+                <div class="dgig-desc-container">
+                        <h3>About this gig</h3>
+                        <p class="dgig-desc">Professional And Creative Designs With High Efficiency.
                             Get Source File - Ai, Eps, Psd, Pdf, And High-quality Jpg, Png. 
                             Copyrights Will Be With The Customer.              
                             Reliable And Quick Communication.      
@@ -42,46 +36,85 @@
                             Our Expertise : Minimalist Logo | Minimal | Flat | Modern | Vintage | Luxury | Typography | Feminine | Signature | Mascot | Custom Logo</p>
     
                 </div> 
-               </div>
-                <div class="priceLine">
-                    <div class="price">
-                            <img class="img-price" src="https://c4.wallpaperflare.com/wallpaper/486/315/777/simple-background-sunset-landscape-calm-nature-hd-wallpaper-preview.jpg" alt="">
-                            <div class="price-txt">
+                <hr>
+                
+                <div class="dgig-rating-container">
+                    <% for(i=0; i<10 ;i++){ %> 
+                    <div class="dgig-rating-item">
+                        <div class="dgig-rating-profile">
+                            <img  src="https://images.unsplash.com/photo-1669642521567-8e7ceaf43a46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                        </div>
+                        <div class="dgig-rating-desc">
+                            <h5>Doaakurd</h5>
+                            <div class="dgig-rating-stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <div class="dgig-rating-line"></div>
+                                <h4>2 months ago</h4>
+                            </div>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque molestias nobis reprehenderit, neque non molestiae deleniti illo dolores repellendus voluptate, animi eos delectus rem harum corporis ullam, voluptatibus quo ad. Possimus veniam dolore recusandae sit enim consequuntur expedita accusantium ullam.</p>      
+                            <div class="dgig-fb-seller-res">
+                                <div class="dgig-fb-seller-profile">
+                                    <img src="https://images.unsplash.com/photo-1669642521567-8e7ceaf43a46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="">
+                                </div>
+                                <div class="dgig-fb-seller-res-desc">
+                                    <h5>seller Response</h5>
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi eius soluta exercitationem quam qui ipsum vitae reprehenderit nihil, cumque odio.</p>
+                                </div>
+      
+                            </div>                    
+                        </div>
+                    </div>
+                   <hr>
+
+                   <% } %> 
+                   <button class="dgig-rating-load-more-btn">
+                     <i class="fa-solid fa-plus"></i> Load More Feedbacks
+                    </button>
+                </div>
+            </div>
+            <div class="fgig-description-right">
+                <div class="fgig-priceLine">
+                    <div class="fgig-price">
+                            <div class="fgig-price-txt">
                                 <h3>Starting from :</h3>
-                                <h1>$20.00</h1>
+                                <h1><span>lkr </span>300.00</h1>
                             </div>
                             
                     </div>
-                    <div class="deliverydetails">
-                            <ul class="list-item">
-                                <li>3-5 Days delivery Time</li>
-                                <li>1500 Views</li>
-                                <li>3 Hours</li>
-                                <li>English,Sinhala</li>
-                                <li>SriLanka</li>
+                    <div class="dgig-deliverydetails">
+                            <ul class="dgig-list-item">
+                                <li><span><i class="fa-solid fa-bookmark"></i></span> English,Sinhala</li>
+                                <li><span><i class="fa-solid fa-bookmark"></i></span> SriLanka</li>
                             </ul>
                             
                     </div>
-                    <div class="buyNow" >
-                                <p class="intro">*This price is not accurate as mentioned above it vary as per work nature</p><br><br>
-                                <button type="submit" class="btnBuy"><h3>Buy Now</h3></button><br><br>
-                                <button type="submit" class="btnContact"><h3>Contact Seller</h3> </button>
+                    <div class="dgig-buyNow" >
+                                <p class="dgig-buynow-intro">*This price is not accurate as mentioned above it vary as per work nature</p><br>
+                                <div class="dgig-button-container">
+                                    <button type="submit" class="dgig-btnContact">Contact Seller</button>
+                                    <button type="submit" class="dgig-btnBuy">Buy Now</button>
+
+                                </div>
                     </div>
-                    <div class="profile">
-                        <div class="profile-box">
-                                    <img class="img-profile" src="https://images.pexels.com/photos/4709289/pexels-photo-4709289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
+                    <div class="dgig-profile">
+                        <div class="dgig-profile-box">
+                                    <img src="https://images.pexels.com/photos/4709289/pexels-photo-4709289.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="">
                                     <h3>Akash Perera</h3>
                                     <h4>I'm a Digital Creator</h4>
                         </div>
-                        <div class="profile-bottom">
-                                
-                                    <button class="btnView">View Profile</button>
-
+                        <div class="dgig-profile-bottom">                               
+                            <button class="dgig-btnView">View Profile</button>
                         </div>
                     </div>
                 </div>
+            </div>
        </div>
     <%- include("../partials/footer.ejs") %> 
-    <script  src="javascript/header.js"></script>
+    <script  src="./javascript/header.js"></script>
+    <script  src="./javascript/gig.js"></script>
 </body>
 </html>

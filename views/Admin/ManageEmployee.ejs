@@ -1,0 +1,34 @@
+<div class="mnge-container">
+    <div class="mnge-header">
+        <button>Add New Employee</button>
+    </div>
+    <div class="mnge-emp-table">
+        <table>
+            <colgroup>
+                <col style="width:30%">
+                <col style="width:5%">
+                <col style="width:30%">
+                <col style="width:35%">
+            </colgroup>
+                <tr>
+                    <th>Name</th>
+                    <th>Id</th>
+                    <th>Role</th>
+                    <th>Take Action</th>
+                </tr>
+                <% for(i=0; i<20 ;i++){ %> 
+                <tr>
+                    <td>Alfreds Futterkiste</td>
+                    <td>01</td>
+                    <td>Administrator</td>
+                    <td class="mnge-action-btn">
+                        <button>Edit</button>
+                        <button>Remove</button>
+                        <button>Pause</button>
+                    </td>
+                </tr>
+                <% } %> 
+      
+          </table>
+    </div>
+</div>

@@ -3,6 +3,7 @@ const path = require("path");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+
 const app = express();
 require("dotenv").config();
 
@@ -24,6 +25,8 @@ app.use(flash());
 
 // requiring routes
 const userRoutes = require("./routes/user");
+const adminRoutes = require("./routes/admin");
+const gigRoutes = require("./routes/gig");
 
 //create mysql connection
 // const db = mysql.createConnection({
@@ -58,12 +61,20 @@ app.use(express.static(__dirname + "/Public"));
 app.get("/", (req, res) => {
   res.render("home");
 });
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+app.use("/user", userRoutes);
+app.use("/admin", adminRoutes);
+app.use("/gig", gigRoutes);
 
 app.get("/gig", (req, res) => {
   res.render("Freelancer/gig");
+});
+
+app.get("/gigs", (req, res) => {
+  res.render("gigs");
+});
+
+app.get("/dashboard", (req, res) => {
+  res.render("Freelancer/dashboard");
 });
 
 app.listen(3000, () => {

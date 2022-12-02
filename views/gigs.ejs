@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="stylesheets/header.css">
+    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="stylesheets/gigs.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <%- include("partials/header.ejs") %> 
+    <section class="gigs-search">
+        <input type="text" />
+        <button>Search</button>
+    </section>
+    <section class="gigs-container">
+        <% for(let i=0;i<10 ;i++) {%> 
+        <div class="up-orders-gig">
+            <img class="up-orders-gig-image" src="https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs3/169097922/original/c2dcf16170b7cb7a65b7d6062711c8539f0976d8.jpg" alt="">
+            <div class="up-gig-desc">
+                <div class="up-gig-profile">
+                    <img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/cee38926920c8b1cea429397a7c90f60-1596980222033/fbec73e7-df8a-43cb-a08b-ceaee1c6cc4a.jpeg" alt="">
+                    <h4>Janaka Chamith</h4>
+                </div>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, accusantium!</p>
+                <h4><span>(4) </span> Feedbacks</h4>
+            </div>
+            <hr color="lightgray">
+            <h3><span>Starting at </span> lkr. 500</h3>
+        </div>
+        <% } %>
+    </section>
+    <section class="gigs-pagination">
+        <% for(let i=0;i < 10; i++ ) {%> 
+            <div class="gigs-pagi">
+                <%= i %> 
+            </div>
+        <% } %> 
+        <div class="gigs-pagi">
+            >
+        </div>
+    </section>
+    <%- include("partials/footer.ejs") %> 
+    <script  src="javascript/header.js"></script>
+    <script  src="javascript/home.js"></script>
+<body>
+</html>

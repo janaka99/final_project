@@ -3,214 +3,333 @@
     width: 90%;
     margin-inline: auto;
     background-color: white;
-   display: flex;
-    
+    display: grid;
+    margin: 50px auto;
+    grid-template-columns: 60% 40%;
+    gap: 30px;
 }
-.description{
-    border: 1px solid lightgrey;
-    width: 100%;
-    margin:100px auto;
+.fgig-description-left{
+    width:calc(100% - 40px);
+    box-shadow: 0px 0px 8px 1px #d2d2d2;
+    padding: 20px;
+    height: fit-content;
+}
+.fgig-description-right{
+    width:calc(100% - 40px);
+    box-shadow: 0px 0px 8px 1px #d2d2d2;
+    padding: 20px;
+    height: fit-content;
 
 }
-.description h4{
-    font-family: arial;
-   color: blue;
-   margin-left: 10px;
-}
-.description h2{
-    margin-left: 10px;
-    font-family: arial;
- }
-.slider{
-    height: 400px;
-    width: 100%;
-    overflow: hidden;
-    border: 0.1px solid lightgray;
- }
- .slider figure{
-    position: relative;
-    width: 300%;
-    margin: 1;
-    left: 0;
-    animation: 10s slider infinite;
- }
- .slider figure img{
-    float: left;
-    width: 20%;
- }
-
- @keyframes slider{
-    0%{left: 0;}
-    20%{left: 0;}
-    45%{left: -100%;}
-    50%{left: -100%;}
-    70%{
-        left: -200%;
+@media screen and (max-width:1024px) {
+    .freelancegig-container{
+        grid-template-columns: 100%;
     }
-    80%{left: -200%;}
-    100%{left: 0;}
+    .fgig-description-right{
+        width:calc(100% - 40px);
+        max-width: 560px;
+        margin: 0 auto;
+ 
+    
+    }
+}
+
+.fgig-description-left h2{
+    margin-left: 10px;
+    margin-bottom: 30px;
  }
-@-webkit-keyframes slide_animation{
-    0%{left:0px;}
-    10%{left:0px;}
-    20%{left:-1200px;}
-    30%{left:-1200px;}
-    40%{left:-2400px;}
-    50%{left:-2400px;}
-    60%{left:-1200px;}
-    70%{left:-1200px;}
-    80%{left:0px;}
-    90%{left:0px;}
-    100%{left:0px;}
-
-}
-.slider{
-      width: 100%;
-      height: 200px;
-      margin: 15 15 0 0;
-      -webkit-animation-name:slide_animation ;
-      -webkit-animation-duration: 3s;
-      -webkit-animation-iteration-count: infinite;
-      -webkit-animation-direction: alternate;
-      -webkit-animation-play-state: running;
-}
-
-
-.note{
-    height: 400px;
+.dgig-slider{
     width: 100%;
+    aspect-ratio: 5/3;
+    background-color: #d2d2d2;
+    display: flex;
+ }
+ .dgig-slider-images{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 20px auto;
+ }
+ .dgig-slider-images img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    cursor: pointer;
+ }
+
+
+
+.dgig-desc-container{
+    width: 100%;
+    margin: 20px 0;
 }
-.note h2{
-    margin-left: 20px;
-    font-family: arial;
-    color: grey;
+.dgig-desc-container h3{
+padding: 0;
+margin: 0;
+margin-bottom: 20px;
 }
-.dIntro{
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 10pt;
-    word-spacing: 2px;
-   
+.dgig-desc-container p{
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5rem;
 }
 .note h4{
     margin-left: 20px;
     font-family: arial;
     color: grey;
 }
-.dPromo{
-    margin-left: 20px;
-    margin-right: 20px;
-    font-size: 10pt;
-    word-spacing: 2px;
-}
-.priceLine{
-    margin-left: 10px;
-    margin-top: 40px;
-    height: 1000px;
-    border: 1px solid lightgrey;
-    width: 500px;
-}
-.price{
-    height: 120px;
-    border: 1px solid lightgrey;
-    width: 100%;
-    position: relative;
-}
-.img-price{
-    width: 100%;
-    height: 100%;
-}
-.price-txt{
-    position: absolute;
-    top: 0;
-    
-}
-.price-txt h3{
-   margin-left: 170px;
-   color:white;
-   text-shadow: 0 0 1px rgb(10, 10, 10); 
-    
+hr{
+    color: #f2f2f2;
 }
 
-.price-txt h1{
-    margin-left: 170px;
-    margin-bottom: 5px;
-    color: orange;
-    font-size: 32pt;
-   text-shadow: 0 1px 0 rgb(250, 243, 243); 
-}
-.deliverydetails{
-    height: 280px;
-    border: 1px solid lightgrey;
+.dgig-rating-container{
     width: 100%;
+    font: 400 16px/24px Macan,Helvetica Neue,Helvetica,Arial,sans-serif;
 }
 
-.list-item{
+
+.dgig-rating-item{
+    width: 100%;
+    margin: 30px 0;
+    display: grid;
+    grid-template-columns: 60px 1fr;
+}
+
+
+.dgig-rating-profile img{
+    width: 90%;
+    margin: 0 auto;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.dgig-rating-desc{
+    flex-grow: 1;
+    margin-left: 15px;
+}
+.dgig-rating-desc h5{
+    margin: 10px 0 0 0;
+}
+.dgig-rating-desc p{
+    word-wrap: break-word;
+    color: #303132;
+    width: 100%;
+    font-size: 14px;
+}
+.dgig-rating-stars{
+    width: 100%;
+display: flex;
+align-items: center;
+margin-bottom: 20px;
+}
+.dgig-rating-stars div{
+    height: 10px;
+    border: 1px solid #ccc;
+    background-color: #ccc;
+    margin: 0 20px;
+}
+.dgig-rating-stars i{
+    color: #FFB33E;
+}
+.dgig-rating-stars h4{
+    color: #a2a2a2;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+@media screen and (max-width:1024px) {
+    .dgig-rating-item{
+        width: 100%;
+        margin: 30px 0;
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .dgig-rating-profile img{
+        width: 100px;
+    }
+    .dgig-fb-seller-res{
+        margin-left: 10px;
+
+        }
+        
+}
+
+.dgig-fb-seller-profile {
+    width: 50px;
+}
+.dgig-fb-seller-profile img{
+    width: 80%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.dgig-fb-seller-res-desc h5{
+    margin-left: 5px;
+    margin-top: 10px;
+}
+
+.dgig-fb-seller-res-desc P{
+    flex-grow: 1;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+.dgig-rating-load-more-btn{
+    border: none;
+    background-color: #FFB33E;
+    margin-top: 30px;
+    padding: 10px 15px;
+}
+
+
+
+
+
+.fgig-priceLine{
+
+    border: 1px solid lightgrey;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.fgig-price{
+    border-bottom: 1px solid lightgrey;
+
+    width: calc(100% - 20px);
+    padding: 20px 10px;
+}
+.fgig-price-txt {
+    display: flex;
+    align-items: center;
+}
+.fgig-price-txt h3{
+margin-right: 10px;
+}
+
+.fgig-price-txt h1 span{
+    color:#FF7300 ;
+    font-size: 20px;
+    font-weight: 600;
+    }
+    
+
+
+.dgig-deliverydetails{
+    border-bottom: 1px solid lightgrey;
+    width: calc(100% - 20px);
+    padding: 20px 10px;
+}
+
+.dgig-list-item{
     list-style: none;
     color: rgb(26, 24, 24);
-     margin-left: 130px;
-     line-height: 45px;
      font-weight:bold;
-     font-family: Arial, Helvetica, sans-serif;
-}
-
-.imgDate{
-    width: 30px;
-    height: 30px;
-    margin-top: 20px;
-    margin-left: 100px;
 
 }
-.buyNow{
-    height: 300px;
+.dgig-list-item li {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+.dgig-list-item li span{
+    margin-right: 10px;
+
+}
+
+
+.dgig-buyNow{
     border: 1px solid lightgrey;
-    width: 100%;
+    width: calc(100% -20px);
+    padding: 20px 10px;
 }
-.btnBuy{
-    margin-left: 100px;
-    border: 0px;
-    border-radius: 3px;
-    text-align: center;
-    width: 300px;
-    height: 50px;
-    font-weight: bold;
-    background-color: red;
-    font-style: arial;
-    
-}
-.intro{
+.dgig-buynow-intro{
     text-align: center;
     font-family: Arial;
     font-size: 10pt;
     color: brown;
 }
-
-.btnBuy h3{
-    color: white;
+.dgig-button-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
-.btnContact{
-    margin-left: 100px;
+.dgig-btnBuy{
     border: 0px;
     border-radius: 3px;
     text-align: center;
-    width: 300px;
-    height: 50px;
     font-weight: bold;
-    background-color: red;
+    background-color: #2ECC71;
     font-style: arial;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
 }
-.btnContact h3{
+
+.dgig-btnBuy:hover{
+
+    background-color: #1d8749;
+    transition: all 0.2s ease-in-out;
+}
+
+.dgig-btnContact{
+    border: 0px;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #2ECC71;
+    font-style: arial;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+}
+
+
+.dgig-btnContact:hover{
+
+    background-color: #1d8749;
+    transition: all 0.2s ease-in-out;
+}
+
+
+
+
+.dgig-btnBuy h3{
     color: white;
 }
-.profile{
-    height: 300px;
-    width: 98%;
-    padding: 4px;
+
+.dgig-btnContact h3{
+    color: white;
 }
-.profile-box{
-        background-color: rgb(201, 32, 83);
-        height:200px;    
-    
+.dgig-profile{
+    width: calc(100% - 20px);
+    padding: 20px 10px;
+}
+
+.dgig-profile-box{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: center;  
+}
+.dgig-profile-box img{
+    width: 100px;   
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-bottom: 10px; 
+    object-fit: cover;
 }
 .profile-box h3{
     font-family: arial;
@@ -227,27 +346,31 @@
     font-style: italic;
 }
 
-.img-profile{
-    border-radius: 15px;
-    width: 30%;
-    margin-left: 160px;
-    margin-top: 15px;
-}
-.profile-bottom{
-    background-color: whitesmoke;
-    margin: 0;
-    height: 80px;
+
+.dgig-profile-bottom{
+    width: 100%;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.btnView{
+.dgig-btnView{
     text-align: center;
     color: white;
-    background-color: rgb(192, 19, 114);
+    background-color: #FF7300;
     border: 0;
     border-radius: 5px;
-    margin-left: 170px;
-    margin-top: 15px;
     width: 130px;
     height: 40px;
-    box-shadow: 0 5px 10px rgba(244,67,54,0.5);
+    box-shadow: 0 5px 10px #b75200;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+}
+
+.dgig-btnView:hover{
+
+    background-color: #d9721d;
+    transition: all 0.2s ease-in-out;
 }

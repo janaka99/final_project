@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/addnewgig.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="register.css"> -->
+</head>
+<body>
+
+    <%- include("../partials/header.ejs") %> 
+        <div class="adng-container">
+
+            <form  >
+            <!-- <form action="/gig/add-new-gig" method="POST" enctype="multipart/form-data"> -->
+                <span id="adng-error-container"></span>
+                <div class="adng-container-div">
+                    <label for="">Title</label>
+                    <textarea class="adng-title" id="adng-title" type="text" maxlength="150"></textarea>
+                </div>
+                <div class="adng-container-div">
+                    <label for="" >Description</label>
+                    <textarea class="adng-desc" id="adng-description" type="text" maxlength="768"></textarea>
+                </div>
+                <div class="adng-container-div">
+                    <label for="">Price</label>
+                    <input type="text" id="adng-price">
+                </div>
+                <div class="adng-container-div">
+                    <label for="">Portoflio</label>
+                    <!-- <div>   
+                        <label class="admn-add-images-label" for="admn-add-images">+</label>
+                        <input onchange="preview()" type="file" name="" id="admn-add-images" multiple>
+                    </div> -->
+
+                    <div id="adng-images-container">
+                        <div class="adng-images-container-img">
+                            <img class="adng-images-container-img-img" id="adng-images-container-img-img1" src="" alt="">
+                            <input type="file" id="admn-add-images1" class="admn-add-images" name="image" />
+                            <label for="admn-add-images1" class="admn-add-images-label">Choose</label>
+                            <i class="fa fa-times " id="admn-remove-img-icon1" aria-hidden="true"></i>
+                        </div>
+
+                        <div class="adng-images-container-img">
+                            <img class="adng-images-container-img-img" id="adng-images-container-img-img2" src="" alt="">
+                            <input type="file" id="admn-add-images2" class="admn-add-images" name="image">
+                            <label for="admn-add-images2" class="admn-add-images-label">Choose</label>
+                            <i class="fa fa-times " id="admn-remove-img-icon2" aria-hidden="true"></i>
+                        </div>
+                        <div class="adng-images-container-img">
+                            <img class="adng-images-container-img-img" id="adng-images-container-img-img3" src="" alt="">
+                            <input type="file" id="admn-add-images3" class="admn-add-images" name="image">
+                            <label for="admn-add-images3" class="admn-add-images-label">Choose</label>
+                            <i class="fa fa-times " id="admn-remove-img-icon3" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="adng-container-div">
+                    <div></div>
+                    <!-- <button class="adng-submit-btn" type="submit">Add</button> -->
+                    <button class="adng-submit-btn" onclick="handleFormSubmit(event)">Add</button>
+                </div>
+            </form>
+        </div>
+    <%- include("../partials/footer.ejs") %> 
+    <script  src="javascript/header.js"></script>
+    <script  src="javascript/addnewgig.js"></script>
+
+</body>
+    
+
+</html>
+
+
+
+
+
+
+

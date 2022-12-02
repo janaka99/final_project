@@ -1,0 +1,113 @@
+.mnge-container{
+    width: calc(100% - 60px);
+    margin: 20px 30px;
+     height: 700px;
+    /* overflow-x: hidden;
+    -ms-overflow-style: none;  
+    scrollbar-width: none; */
+}
+/* .mnge-container::-webkit-scrollbar {
+    display: none;
+} */
+.mnge-header{
+    height: 70px;
+    display: flex;
+    background-color: #fff;
+    align-items: center;
+    padding-left: 20px;
+}
+.mnge-header button{
+    padding: 10px 20px;
+    height: fit-content;
+    width: fit-content;
+    /* margin-right: 20px;  */
+    background-color: #2ECC71;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+}
+.mnge-header button:hover{
+
+    background-color: #2ab363;
+    transition: all 0.4s ease-in-out;
+}
+
+.mnge-emp-table{
+    margin-top: 30px;
+    background-color: #fff;
+    padding: 20px 20px;
+    display: flex;
+}
+.mnge-emp-table table{
+    width: 100%;
+    border-collapse: collapse; 
+
+}
+
+.mnge-emp-table table tr{
+    border: 1px solid #ccc;
+}
+
+.mnge-emp-table table tr th{
+/* width: 50% ; */
+text-align: left;
+padding: 20px 20px;
+border-right: 1px solid #ccc;
+}
+
+.mnge-emp-table table tr td{
+    padding: 20px 20px;
+border-right: 1px solid #ccc;
+overflow: hidden;
+   
+
+}
+
+#mnge-action-btn {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+
+
+.mnge-action-btn button{
+    padding: 10px 20px;
+    height: fit-content;
+    width: fit-content;
+    /* margin-right: 20px;  */
+    background-color: #2ECC71;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    transition: all 0.4s ease-in-out;
+    cursor: pointer;
+    margin-right: 20px;
+}
+.mnge-action-btn button:nth-child(2){
+
+    background-color: #FF7300;
+
+}
+.mnge-action-btn button:hover{
+
+    background-color: #2ab363;
+    transition: all 0.4s ease-in-out;
+}
+.mnge-action-btn button:nth-child(2):hover{
+
+background-color: #ed7310;
+
+}
+
+.template-screens{
+    max-height: calc(100vh - 70px);
+    overflow-x: hidden;
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
+}
+.template-screens::-webkit-scrollbar {
+display: none;
+}
