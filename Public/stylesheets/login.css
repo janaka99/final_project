@@ -1,3 +1,65 @@
-.container{
-    margin-top: 80px;
+*{
+    padding: 0;
+    margin:0;
 }
+body{
+    width: 100vw;
+    height: 100%;
+    overflow-x: hidden;
+}
+.container{
+    margin-top: 50px;
+    width: 100%;
+    height:100%;
+    position: relative;
+
+}
+
+.bg-image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -11;
+
+}
+
+.bg-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.content{
+    min-height: 100vh;
+    z-index: 111;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content-container{
+    max-width: 350px;
+    width: 100%;
+    background-color: #ffffff;
+}
+
+.content-container form{
+    
+    /*display: flex;
+    flex-direction: column;*/
+    padding: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-container button{
+    
+    max-width:100px;
+    width:100%;
+    padding: 10px 10px;
+    background-color: orange;
+}2
