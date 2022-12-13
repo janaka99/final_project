@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/stylesheets/adminTemplate.css">
+    <link rel="stylesheet" href="/stylesheets/adminAddNewEmployee.css">
+    <link rel="stylesheet" href="/stylesheets/adminhome.css">
+    <link rel="stylesheet" href="/stylesheets/adminsidebar.css">
+    <link rel="stylesheet" href="/stylesheets/adminManageEmployee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Employee </title>
+</head>
+<body>
+                <%- include("sidebar.ejs") %> 
+                
+                <div class="template-screens">
+                    <div class="pending-gigs">
+                        <div class="mnge-container">
+                            <div class="mnge-adnm-header">
+                            <h3>Add New Employee</h3>
+                            </div>
+                            <div class="mnge-adnm-form">
+                                <form action="/admin/dashboard/add-new-employee" method="POST">
+                                    <div>
+                                        <label for="">Username</label>
+                                        <input type="text" name="username" id="">
+                                    </div>
+                                    <div>
+                                        <label for="">email</label>
+                                        <input type="text" name="email" id="">
+                                    </div>
+                                    <div>
+                                        <label for="">firstName</label>
+                                        <input type="text" name="firstName" id="">
+                                    </div>
+                                    <div>
+                                        <label for="">lastName</label>
+                                        <input type="text" name="lastName" id="">
+                                    </div>
+                                    <div>
+                                        <label for="">phoneNumber</label>
+                                        <input type="text" name="phoneNumber" id="">
+                                    </div>
+                                    <div>
+                                        <label for="">Password</label>
+                                        <input type="text" name="password" id="">
+                                    </div>
+                                    <button type="submit">Register</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+           </div>
+    </div>
+
+    <script src="/javascript/admin.js"></script>
+</body>
+</html>

@@ -14,10 +14,16 @@ app.set(express.json());
 
 app.use(
   session({
+    name: "_kU",
     secret: "welesson",
-    cookie: { maxAge: 6000 },
-    saveUninitialized: false,
     resave: false,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true,
+      // secure: true,
+      expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+      maxAge: 1000 * 60 * 60 * 24 * 7,
+    },
   })
 );
 
@@ -25,8 +31,10 @@ app.use(flash());
 
 // requiring routes
 const userRoutes = require("./routes/user");
+const loginRoutes = require("./routes/login");
 const adminRoutes = require("./routes/admin");
 const gigRoutes = require("./routes/gig");
+const orderRoutes = require("./routes/order");
 
 //create mysql connection
 // const db = mysql.createConnection({
@@ -44,6 +52,7 @@ const gigRoutes = require("./routes/gig");
 // });
 
 app.use(function (req, res, next) {
+  res.locals.currentUser = req.session.accessToken;
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   next();
@@ -62,8 +71,10 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 app.use("/user", userRoutes);
+app.use("/login", loginRoutes);
 app.use("/admin", adminRoutes);
 app.use("/gig", gigRoutes);
+app.use("/order", orderRoutes);
 
 app.get("/gig", (req, res) => {
   res.render("Freelancer/gig");

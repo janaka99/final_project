@@ -6,20 +6,22 @@ cloudinary.config({
   api_secret: "o-1ooBQbdutknS9MMzuWeOTf08M",
 });
 
-exports.uploads = (file, folder) => {
-  return new Promise((resolve) => {
-    cloudinary.uploader.upload(
-      file,
-      (result) => {
-        resolve({
-          url: result.url,
-          id: result.public_id,
-        });
-      },
-      {
-        resource_type: "auto",
-        folder: folder,
-      }
-    );
-  });
-};
+// exports.uploads = (file, folder) => {
+//   return new Promise((resolve) => {
+//     cloudinary.uploader.upload(
+//       file,
+//       (result) => {
+//         resolve({
+//           url: result.url,
+//           id: result.public_id,
+//         });
+//       },
+//       {
+//         resource_type: "auto",
+//         folder: folder,
+//       }
+//     );
+//   });
+// };
+
+module.exports = cloudinary;

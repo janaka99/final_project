@@ -121,13 +121,14 @@ function handleFormSubmit(event) {
         description: description.value,
         price: price.value,
       };
-      console.log(gigImages);
+
       const gigImgs = [gigImages.img1, gigImages.img2, gigImages.img3];
+
       const formData = new FormData();
-      //   formData.append("img1", gigImages.img1);
-      //   formData.append("img2", gigImages.img2);
-      //   formData.append("img3", gigImages.img3);
-      formData.append("image", gigImgs);
+      formData.append("image", gigImages.img1);
+      formData.append("image", gigImages.img2);
+      formData.append("image", gigImages.img3);
+      // formData.append("image", FileList);
 
       formData.append("data", JSON.stringify(data));
 

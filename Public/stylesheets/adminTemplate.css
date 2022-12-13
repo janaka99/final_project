@@ -141,3 +141,8 @@
 .admin-layout-header-content-hide{
     display: flex;
 }
+
+.admin-layout-header-content-profile-image img{
+    header:100%;
+    weight:100%;
+}

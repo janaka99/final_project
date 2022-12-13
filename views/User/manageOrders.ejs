@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/userProfile.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="register.cc">
+</head>
+<body>
+    <%- include("../partials/header.ejs") %> 
+    <div class="up-container">
+        <title>Orders in quneu</title>
+        <table>
+            <tr>
+                <th>order id</th>
+                <th>seller name</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% for( let i = 0; i < orders.length; i++ ) { %>
+                <tr>
+                    <td><%= orders[i].id %> </td>
+                    <td><%= orders[i].id %> </td>
+                    <td>Accepts </td>
+                    <td>Reject</td>
+                </tr>
+            <% } %>
+
+        </table>
+    </div>
+    
+    <%- include("../partials/footer.ejs") %> 
+    <script  src="javascript/header.js"></script>
+</body>
+    
+
+</html>

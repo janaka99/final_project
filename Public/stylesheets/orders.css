@@ -1,0 +1,129 @@
+.orders-container{
+    max-width:768px;
+    width:90%;
+    margin: 50px auto;
+
+}
+
+.orders-title{
+    font-size: 25px;
+}
+
+.orders-title table {
+    margin-top: 50px;
+    width: 100%;
+    text-align: start;
+    background-color: rgba(180, 180, 180, 0.318);
+}
+
+.orders-title table tr th{
+    font-size: 18px;
+    text-align: left;
+    padding: 10px 5px;
+}
+
+
+.orders-title table tr td{
+    font-size: 18px;
+    text-align: left;
+    padding: 10px 5px;
+    
+}
+
+#deliver-btn-orders{
+    height: 100%;
+    width: 100%;
+    background-color: greenyellow;
+    border: none;
+    padding: 10px 0;
+    cursor: pointer;
+}   
+
+.orders-deliver-window{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.878);;
+    z-index: 111;
+    position: fixed;
+    display: none;
+    
+}
+
+.orders-deliver-window .orders-deliver-window-div{
+    width: 90%;
+    max-width: 300px;
+    height: 200px;
+    position: absolute;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: space-around;
+}
+
+.orders-deliver-window .orders-deliver-window-div button{
+    background-color: greenyellow;
+    border: none;;
+    padding: 20px 0;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+
+
+.orders-complete-window{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.878);;
+    z-index: 111;
+    position: fixed;
+    /* display: none; */
+}
+
+.orders-complete-window .orders-complete-window-div{
+    width: 90%;
+    max-width: 768px;
+    height: 300px;
+    position: absolute;
+    background-color: white;
+}
+
+.orders-complete-window div form{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.orders-complete-window div input{
+margin-right: 20px;
+}
+.orders-complete-window  label{
+    font-size: 15px;
+}
+.orders-complete-window div span{
+    font-size: 15px;
+}
+.orders-complete-window div button{
+    margin-top: 20px;  
+    padding: 20px 0;
+    font-weight: 700;
+    font-size: 16px;
+    background-color: rgba(172, 255, 47, 0.89);
+    border: none;;
+    cursor: pointer;
+}
+.hide-deliver{
+    display: flex;
+}

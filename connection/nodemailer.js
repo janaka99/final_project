@@ -36,7 +36,7 @@ module.exports.sendResetEmail = async (email, token) => {
 module.exports.sendVerifyEmail = async (email, token) => {
   var url = "http://localhost:3000/user/verifyEmail?token=" + token;
 
-  // console.log(url);
+  console.log(url);
   try {
     let info = await transport.sendMail(
       {
@@ -44,7 +44,7 @@ module.exports.sendVerifyEmail = async (email, token) => {
         to: email,
         subject: "Verify Your Account",
         text: url,
-        html: "<h1>",
+        html: "<a href=" + url + "> " + url + " </a>",
       },
       function (err, res) {
         if (err) {

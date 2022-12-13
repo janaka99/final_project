@@ -16,11 +16,11 @@
                     <th>Role</th>
                     <th>Take Action</th>
                 </tr>
-                <% for(i=0; i<20 ;i++){ %> 
+                <% for(i=0; i<employees.length ;i++){ %> 
                 <tr>
-                    <td>Alfreds Futterkiste</td>
-                    <td>01</td>
-                    <td>Administrator</td>
+                    <td><%= employees[i].username %> </td>
+                    <td><%= employees[i].id %> </td>
+                    <td><%= employees[i].role %> </td>
                     <td class="mnge-action-btn">
                         <button>Edit</button>
                         <button>Remove</button>

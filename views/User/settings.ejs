@@ -15,80 +15,162 @@
     <%- include("../partials/header.ejs") %> 
         <div class="user-settings-container">
             <div class="user-settings-content user-settings-content-1">
-                <form action="">
+                <form action="/user/settings/update-bio-description" method="POST">
+
                     <div class="user-settings-table-item">
                         <label   for="user-settings-user-bio">Bio</label>
-                        <textarea name="" id="user-settings-user-bio"   maxlength="100"></textarea>
+                        <textarea name="bio" id="user-settings-user-bio"   maxlength="100"><%= user.bio  %> </textarea>
                     </div>
                     <div class="user-settings-table-item">
                         <label id="user-settings-user-desc-label" for="user-settings-user-desc">Description</label>
-                        <textarea name="" id="user-settings-user-desc"   maxlength="768"></textarea>
+                        <textarea name="description" id="user-settings-user-desc"   maxlength="768"><%= user.description %> </textarea>
                     </div>
-                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                    <div class="user-settings-table-button"><button type="submit">Save Changes</button></div>
                 </form>
             </div>
             <div class="user-settings-content">
-                <form action="">
+                <form action="/user/settings/update-profile-picture" method="POST" enctype="multipart/form-data">
+                <input type="file" name="image">
+                <button type="submit">save</button>
+            </form>
+            </div>
+            <div class="user-settings-content">
+                <form action="/user/settings/update-user-name-details" method="POST">
+     
                     <div class="user-settings-table-item">
                         <label for="">Username</label>
-                        <input type="text">
+                        <input name="username" type="text" value="<%= user.username %> ">
                     </div>
                     <div class="user-settings-table-item">
                         <label for="">First Name</label>
-                        <input type="text">
+                        <input name="firstName" type="text" value="<%= user.firstName %> ">
                     </div>
                     <div class="user-settings-table-item">
                         <label for="">Last Name</label>
-                        <input type="text">
+                        <input name="lastName" type="text" value="<%= user.lastName %> ">
                     </div>
-                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                    <div class="user-settings-table-button"><button type="submit">Save Changes</button></div>
                 </form>
             </div>
             <div class="user-settings-content">
                 <form action="">
+                    <% if (user.phoneNumber_verified == 0) { %>
+                    <h4 style="color: #de2a0a;">Please Verify</h4>
+                    <% } %>
+                    <% if (user.phoneNumber_verified == 1) { %>
+                     <h4 style="color: #2ECC71;">Verified</h4>
+                    <% } %>
                     <h4 style="color: #2ECC71;">Verified</h4>
                     <div class="user-settings-table-item">
                         <label for="">Phone  Number</label>
-                        <input type="text">
+                        <input type="text" value="<%= user.phoneNumber %> ">
                     </div>
                     <div class="user-settings-table-button"><button>Save Changes</button></div>
                 </form>
             </div>
             <div class="user-settings-content">
                 <form action="">
-                    <h4 style="color: #2ECC71;">Verified</h4>
+                    <% if (user.email_verified == 0) { %>
+                        <h4 style="color: #de2a0a;">Please Verify</h4>
+                        <% } %>
+                        <% if (user.email_verified == 1) { %>
+                         <h4 style="color: #2ECC71;">Verified</h4>
+                        <% } %>
                     <div class="user-settings-table-item">
                         <label for="">Email</label>
-                        <input type="text">
+                        <input type="text" value="<%= user.email %> ">
                     </div>
                     <div class="user-settings-table-button"><button>Save Changes</button></div>
                 </form>
             </div>
             <div class="user-settings-content">
-                <form action="">
+                <% if(error){%> 
+                    <span><%= error %> </span>
+                <% } %> 
+                <% if (success) { %>
+                        <span><%= success %> </span>
+                <% } %>
+                <form action="/user/settings/update-address-details" method="POST">
+                    <div class="user-settings-table-item">
+                        <label for="">Province</label>
+                        <label type="text" value="<%= user.province %> "><%= user.province %></label>
+                        <div></div>
+                        <select name="district" id="" >
+                            <option value="kandy">Kandy</option>
+                            <option value="ampara">Ampara</option>
+                            <option value="anuradhapura">Anuradhapura</option>
+                            <option value="badulla">Badulla</option>
+                            <option value="batticaloa">Batticaloa</option>
+                            <option value="colombo">Colombo</option>
+                            <option value="galle">Galle</option>
+                            <option value="gampaha">Gampaha</option>
+                            <option value="hambantota">Hambantota</option>
+                            <option value="jaffna">Jaffna</option>
+                            <option value="kalutara">Kalutara</option>
+                            <option value="kegalle">Kegalle</option>
+                            <option value="kilinochchi">Kilinochchi</option>
+                            <option value="kurunegala">Kurunegala</option>
+                            <option value="mannar">Mannar</option>
+                            <option value="matale">Matale</option>
+                            <option value="matara">Matara</option>
+                            <option value="monaragala">Monaragala</option>
+                            <option value="mullaitivu">Mullaitivu</option>
+                            <option value="nuwara eliya">Nuwara eliya</option>
+                            <option value="polonnaruwa">Polonnaruwa</option>
+                            <option value="puttalam">Puttalam</option>
+                            <option value="ratnapura">Ratnapura</option>
+                            <option value="trincomalee">Trincomalee</option>
+                            <option value="vavuniya">Vavuniya</option>
+                        </select>
+                    </div>
+                    <div class="user-settings-table-item">
+                        <label for="">District</label>
+                        <label type="text" value="<%= user.district %> "><%= user.district %></label>
+                        <div></div>
+                        <select name="province" id="">
+                            <option value="central">Central</option>
+                            <option value="eastern">eastern</option>
+                            <option value="northern">northern</option>
+                            <option value="southern">southern</option>
+                            <option value="western">western</option>
+                            <option value="north western">north western</option>
+                            <option value="north central">north central</option>
+                            <option value="uva">uva</option>
+                            <option value="sabaragamuwa">sabaragamuwa</option>
+                        </select>
+                    </div>
                     <div class="user-settings-table-item">
                         <label for="">Address 1</label>
-                        <input type="text">
+                        <input name="address1" type="text" value="<%= user.address1 %> ">
                     </div>
+
                     <div class="user-settings-table-item">
                         <label for="">Address 2</label>
-                        <input type="text">
+                        <input name="address2" type="text" value="<%= user.address2 %> ">
                     </div>
-                    <div class="user-settings-table-item">
-                        <label for="">Address 3</label>
-                        <input type="text">
-                    </div>
-                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                    <div class="user-settings-table-button"><button type="submit">Save Changes</button></div>
                 </form>
             </div>
 
             <div class="user-settings-content">
-                <form action="">
+                <form action="/user/settings/change-online-status" method="POST">
                     <div class="user-settings-table-item">
                         <label for="">Online</label>
-                        <input type="text">
+                        <label for="">
+                            <% if (user.online_status == 1) { %>
+                                Online
+                            <% } %>
+                            <% if (user.online_status == 0) { %>
+                             On Vacation
+                            <% } %>
+                        </label>
+                        <select name="online_status" id="">
+
+                            <option value="true">Active</option>
+                            <option value="false">On Vacation</option>
+                        </select>
                     </div>
-                    <div class="user-settings-table-button"><button>Save Changes</button></div>
+                    <div class="user-settings-table-button"><button type="submit">Save Changes</button></div>
                 </form>
             </div>
         </div>

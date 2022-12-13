@@ -2,52 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="stylesheets/header.css">
-    <link rel="stylesheet" href="stylesheets/footer.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="register.cc">
+    <title>Register</title>
+    <link rel="stylesheet" href="/stylesheets/register.css">
 </head>
 <body>
     <%- include("./partials/header.ejs") %> 
-    
-        <h1>register page</h1>
-        <h2>It ez to sign up and get started</h2>
-        <h3>Already have an account?</h3>
-        <div className="inout-group">
-            <h5>First Name</h5>
-            <input type="text" name="Fname" id="fname" />
-        </div>
-        <div className="inout-group">
-            <h5>Last Name</h5>
-            <input type="text" name="Fname" id="fname" />
-        </div>
-        <div className="inout-group">
-            <h5>Type username</h5>
-            <input type="text" name="Tname" id="tname" />
-        </div>
-        <div className="inout-group">
-            <h5>Phone number</h5>
-            <input type="text" name="Pno" id="pno" />
-        </div>
-        <div className="inout-group">
-            <h5>Email</h5>
-            <input type="Email" name="Fname" id="email" />
-        </div>
-        <div className="inout-group">
-            <h5>Password</h5>
-            <input type="Password" name="pwd" id="pwd" />
-            <div className="inout-group">
-                <h5>Select Location</h5>
-                <input type="" name="Slocation" id="slocation" />
+    <div class="reg-container">
+        <h4>Register </h4>
+        
+        <form action="/user/register" method="post" class="reg-form">
+            <div class="reg-div">
+                <label>First Name</label>
+                <input type="text" name="firstName" />
             </div>
-            <input type="button" value="submit" />
-        </div>
+            <div class="reg-div">
+                <label>Last Name</label>
+                <input type="text" name="lastName" />
+            </div>
+            <div class="reg-div">
+                <label>Username</label>
+                <input type="text" name="username" />
+            </div>
+            <div class="reg-div">
+                <label>Phone number</label>
+                <input type="text" name="phoneNumber" id="pno" />
+            </div>
+            <div class="reg-div">
+                <label>Email</label>
+                <input type="text" name="email" id="email" />
+            </div>
+            <div class="reg-div">
+                <label>Password</label>
+                <input type="password" name="password" id="password" />
+            </div>
+            <div class="reg-div">
+                <label for="">Province</label>
+                <select name="province" id="">
+                    <option value="central">Central</option>
+                    <option value="eastern">eastern</option>
+                    <option value="northern">northern</option>
+                    <option value="southern">southern</option>
+                    <option value="western">western</option>
+                    <option value="north western">north western</option>
+                    <option value="north central">north central</option>
+                    <option value="uva">uva</option>
+                    <option value="sabaragamuwa">sabaragamuwa</option>
+                </select>
+            </div>
+            <div class="reg-div">
+                <label for="">District</label>
+                <select name="district" id="" >
+                    <option value="kandy">Kandy</option>
+                    <option value="ampara">Ampara</option>
+                    <option value="anuradhapura">Anuradhapura</option>
+                    <option value="badulla">Badulla</option>
+                    <option value="batticaloa">Batticaloa</option>
+                    <option value="colombo">Colombo</option>
+                    <option value="galle">Galle</option>
+                    <option value="gampaha">Gampaha</option>
+                    <option value="hambantota">Hambantota</option>
+                    <option value="jaffna">Jaffna</option>
+                    <option value="kalutara">Kalutara</option>
+                    <option value="kegalle">Kegalle</option>
+                    <option value="kilinochchi">Kilinochchi</option>
+                    <option value="kurunegala">Kurunegala</option>
+                    <option value="mannar">Mannar</option>
+                    <option value="matale">Matale</option>
+                    <option value="matara">Matara</option>
+                    <option value="monaragala">Monaragala</option>
+                    <option value="mullaitivu">Mullaitivu</option>
+                    <option value="nuwara eliya">Nuwara eliya</option>
+                    <option value="polonnaruwa">Polonnaruwa</option>
+                    <option value="puttalam">Puttalam</option>
+                    <option value="ratnapura">Ratnapura</option>
+                    <option value="trincomalee">Trincomalee</option>
+                    <option value="vavuniya">Vavuniya</option>
+                </select>
+            </div>
+            <div class="reg-div"><button type="submit">Register</button></div>
+        </form>
+        <h5>Already have an account? <a href="/user/login">login</a></h5>
     </div>
     <%- include("./partials/footer.ejs") %> 
-    <script  src="javascript/header.js"></script>
+    <script  src="/javascript/header.js"></script>
 </body>
     
 

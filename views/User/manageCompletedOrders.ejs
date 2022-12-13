@@ -1,0 +1,68 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/stylesheets/adminTemplate.css">
+    <link rel="stylesheet" href="/stylesheets/adminhome.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/adminsidebar.css">
+    <link rel="stylesheet" href="/stylesheets/adminManageEmployee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+                <%- include("dashboard.ejs") %> 
+                
+                <div class="template-screens">
+                    <div class="orders-container">
+                        <h1 class="orders-title">Your Completed orders as seller</title>
+                        <table collspacing="10" colpadding="10" border="1">
+                            <colgroup>
+                                <col style="width:10%">
+                                <col style="width: 45%">
+                                <col style="width:15%">
+                                <col style="width:10%">
+                                <col style="width:20%">
+                            </colgroup>
+                            <tr>
+                                <th>order id</th>
+                                <th>order title</th>
+                                <th>price</th>
+                                <th>time left</th>
+                                <th></th>
+                            </tr>
+                            <% for( let i = 0; i < orders.length; i++ ) { %>
+                                <tr>
+                                    <td><%= orders[i].id %> </td>
+                                    <td><%= orders[i].id %> </td>
+                                    <td><%= orders[i].price %> </td>
+                                    <td><%= orders[i].id %> </td>
+                                    <td><button onclick="handleDeliverOrder( orders[i].id )" id="deliver-btn-orders">Deliver</button></td>
+                                </tr>
+                                <div class="orders-deliver-window">
+                                    <div class="orders-deliver-window-div">
+                                        <form action="/order/deliver-order/<%= orders[i].id %>" method="POST" enctype="multipart/form-data">
+                                            <input type="file" name="orderFile" />
+                                            <label for="">Description</label>
+                                            <textarea name="description" id="" cols="30" rows="10" name="descriptin"></textarea>
+                                            <button type="submit">Deliver</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            <% } %>
+                
+                        </table>
+
+                    </div>
+                </div>
+           </div>
+    </div>
+
+    <script src="/javascript/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/login.css">
+</head>
+<body >
+    
+    <%- include("partials/header.ejs") %> 
+    
+    <div class="login-container">
+        <div class="login-content">
+            <div class="login-content-container">
+
+                <form action="/user/login" method="POST">
+                    <h2 style="text-align:center ;">Sign in now</h2>
+                    <div>
+                        <label for="">Email :</label>
+                        <input type="text" name="email" id="uname">
+                    </div>
+                    <div>
+                        <label for="">Password  :</label>
+                        <input type="text" name="password" id="password">
+                    </div>
+                    <button type="submit">Sign in</button>
+                </form>
+                <h5>Dont't have an account ? <a href="" style="font-size: 16px;">sign up</a></h5>
+                <h5>Forgot Password ? <a href="/user/forgot-password" style="font-size: 16px;">reset pass</a></h5>
+
+                
+
+            </div>
+        </div>
+    </div>
+
+    <%- include("partials/footer.ejs") %> 
+    <script  src="javascript/header.js"></script>
+</body>
+</html>

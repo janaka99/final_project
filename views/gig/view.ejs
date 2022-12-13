@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/stylesheets/freelancergig.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Document</title>
+
+</head>
+<body >
+    <%- include("../partials/header.ejs") %> 
+       <div class="freelancegig-container" >
+            <div class="fgig-description-left">
+                <h2><%= gigData.title %> <span style="color: rgba(136, 136, 136, 0.8);">(41)</span></h2>
+                <div class="dgig-slider">
+                    <img id="dgig-rating-profile-img" src="" alt="">
+                </div>
+                <div class="dgig-slider-images">
+                    <% for( let i = 0; i < gigImages.length; i++ ) { %>
+                        <img class="dgig-rating-profile-imges"  src="<%= gigImages[i].img_url %> " alt="">
+                    
+                    <% } %>
+
+                
+                </div>
+                <div class="dgig-desc-container">
+                        <h3>About this gig</h3>
+                        <p class="dgig-desc"><%= gigData.description %>
+                            </p>
+    
+                </div> 
+                <hr>
+                    <h4 style="margin: 20px 0;">What Other people say</h3>
+                <hr>
+                <div class="dgig-rating-container">
+                    <% if(feedbacks != null) {%> 
+                    <% for(i=0; i<feedbacks.length ;i++){ %> 
+                    <div class="dgig-rating-item">
+                        <div class="dgig-rating-profile">
+                            <img border="1"  src="<%= feedbacks[i].img_url %>" alt="">
+                        </div>
+                        <div class="dgig-rating-desc">
+                            <h5><%= feedbacks[i].username %> </h5>
+                            <div class="dgig-rating-stars">
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-regular fa-star"></i>
+                                <div class="dgig-rating-line"></div>
+                                <h4 ><%= feedbacks[i].d %></h4>
+                            </div>
+                            <p><%= feedbacks[i].description %></p>      
+
+                        </div>
+                    </div>
+                   <hr>
+
+                   <% } %> 
+                   <% } %> 
+<!-- 
+                   <button class="dgig-rating-load-more-btn">
+                     <i class="fa-solid fa-plus"></i> Load More Feedbacks
+                    </button> -->
+                </div>
+            </div>
+            <div class="fgig-description-right">
+                <div class="fgig-priceLine">
+                    <div class="fgig-price">
+                            <div class="fgig-price-txt">
+                                <h3>Starting from :</h3>
+                                <h1><span>lkr </span><%= gigData.price %></h1>
+                            </div>
+                            
+                    </div>
+                    <div class="dgig-deliverydetails">
+                            <ul class="dgig-list-item">
+                                <li><span><i class="fa-solid fa-bookmark"></i></span> English,Sinhala</li>
+                                <li><span><i class="fa-solid fa-bookmark"></i></span> SriLanka</li>
+                            </ul>
+                            
+                    </div>
+                    <div class="dgig-buyNow" >
+                                <p class="dgig-buynow-intro">*This price is not accurate as mentioned above it vary as per work nature</p><br>
+                                <div class="dgig-button-container">
+                                    <button type="submit" class="dgig-btnContact">Contact Seller</button>
+                                    <button type="submit" class="dgig-btnBuy" onclick="handleBuyNow()">Buy Now</button>
+                                    <form action="/order/payment/<%= gigData.id %>" method="POST">
+                                        <script 
+                                        src="//checkout.stripe.com/v2/checkout.js"
+                                        class="stripe-button"
+                                        data-key="<%= pbKey %>"
+                                        data-amount="<%= gigData.price * 100 %>"
+                                        data-currency="lkr"
+                                        data-orderId = "10"
+                                        data-name="<%= gigData.title %>"
+                                        data-Locale="auto"
+                                        data-email="janakachamith88@gmail.com"
+                                        ></script>
+                                    </form>
+                                </div>
+                    </div>
+
+                    <div class="dgig-profile">
+                        <div class="dgig-profile-box">
+                                    <img src="<%= gigData.img_url %> " alt="">
+                                    <h3><% gigData.username %> </h3>
+    
+                        </div>
+                        <div class="dgig-profile-bottom">       
+                            <a href="/user/freelacer/profile/<%= gigData.userId %>">                 
+                            <button class="dgig-btnView">View Profile</button></a>      
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+    <%- include("../partials/footer.ejs") %> 
+    <script  src="/javascript/header.js"></script>
+    <script  src="/javascript/gig.js"></script>
+
+</body>
+</html>

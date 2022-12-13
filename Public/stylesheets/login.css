@@ -2,64 +2,59 @@
     padding: 0;
     margin:0;
 }
-body{
-    width: 100vw;
-    height: 100%;
-    overflow-x: hidden;
-}
-.container{
-    margin-top: 50px;
-    width: 100%;
-    height:100%;
-    position: relative;
 
+.login-container{
+    width:100%;
+    min-height: 100%;
+    position:relative;
+    margin: 50px 0;
 }
 
-.bg-image{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top:0;
-    left:0;
-    z-index: -11;
 
-}
 
-.bg-image img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.content{
-    min-height: 100vh;
-    z-index: 111;
-    width: 100%;
+.login-content{
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid lightgray;
+    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 1px 1px 10px 2px rgba(204, 204, 204, 0.26);
 }
-.content-container{
-    max-width: 350px;
+.login-content-container{
+
     width: 100%;
-    background-color: #ffffff;
+
 }
 
-.content-container form{
+.login-content-container form{
     
     /*display: flex;
     flex-direction: column;*/
     padding: 20px 20px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 30px;
 }
 
-.content-container button{
+.login-content-container form div{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    align-items: center;
+}
+.login-content-container form div input{
+    outline: none;
+    padding: 10px;
+}
+.login-content-container button{
     
     max-width:100px;
     width:100%;
     padding: 10px 10px;
-    background-color: orange;
-}2
+    background-color: #2ECC71;
+    border: none;
+    cursor: pointer;
+    margin: 0 auto;
+}

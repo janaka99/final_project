@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/stylesheets/adminTemplate.css">
+    <link rel="stylesheet" href="/stylesheets/adminhome.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
+    <link rel="stylesheet" href="/stylesheets/adminsidebar.css">
+    <link rel="stylesheet" href="/stylesheets/adminManageEmployee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <%- include("dashboard.ejs") %> 
+    <div class="template-screens">
+        <div class="pending-gigs">
+            <div class="dashboard-container">
+                <div class="dashboard-container-top">
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            Total Earnings
+                        </div>
+                        <div class="dashboard-container-item-desc">
+                            <h3><span>rs</span>  <%= userDetails.balance  %></h3> 
+                        </div>
+                    </div>
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            <div class="dashboard-container-item-title">
+                                Balance
+                            </div>
+                            <div class="dashboard-container-item-desc">
+                               <h3><span>rs</span> <%= userDetails.balance  %> </h3> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            <div class="dashboard-container-item-title">
+                                Withdrawed
+                            </div>
+                            <div class="dashboard-container-item-desc">
+                                <h3><span>rs</span> <%= userDetails.withdrawed  %></h3> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-top: 30px;" class="dashboard-container-top">
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            Pending Clearance
+                        </div>
+                        <div class="dashboard-container-item-desc">
+                            <h3><span>rs</span>  <%= userDetails.pending_clearance  %></h3> 
+                        </div>
+                    </div>
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            <div class="dashboard-container-item-title">
+                                Last 31 days Earnings
+                            </div>
+                            <div class="dashboard-container-item-desc">
+                               <h3><span>rs</span> 356.95</h3> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            <div class="dashboard-container-item-title">
+                                Withdrawed
+                            </div>
+                            <div class="dashboard-container-item-desc">
+                                <h3><span>rs</span> 356.95</h3> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-container-middle">
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                          Pending clearance
+                        </div>
+                    </div>
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            <h3><span>rs</span> 356.95</h3> 
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-container-bottom">
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                          
+                        </div>
+                    </div>
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            
+                        </div>
+                    </div>
+                    <div class="dashboard-container-item">
+                        <div class="dashboard-container-item-title">
+                            
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+
+    <script src="/javascript/admin.js"></script>
+</body>
+</html>

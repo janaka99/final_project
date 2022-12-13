@@ -6,11 +6,21 @@
         </div>
         <div class="header-navigation">
             <ul>
+                <% if(currentUser){%> 
+                    <li class="header-item"><span style="font-weight: 600;">Welcome: </span>  <span style="font-style: italic;"><%= currentUser.username %></span></li>
+
+                <% } %> 
                 <li class="header-item"><a href="">About Us</a></li>
                 <li class="header-item"><a href="">How It Works</a></li>
                 <li class="header-item"><a href="">Contact</a></li>
-                <li class="header-signin-btn"><a href="">Sign In</a></li>
-                <li class="header-register-btn"><a href="">Log In</a></li>
+                <% if(!currentUser){%> 
+                <a style="text-decoration: none; font-weight: 600;" href="/user/register"><li class="header-signin-btn">Sign up</li></a>
+                <a style="text-decoration: none;  font-weight: 600;" href="/user/login"><li class="header-register-btn">Log In</li></a>
+                <% }else{ %> 
+                    
+                    <a href="/user/logout " style="text-decoration: none;  font-weight: 600;"> <li class="header-register-btn">Log out</li></a>
+                <%}%>
+                
             </ul>
         </div>
         <div class="header-burger">
@@ -19,4 +29,27 @@
             <div></div>
         </div>
     </nav>
+    <% if (error != "" || success != "") { %>
+        <div class="err-success-msg " id="err-success-click">
+            <% if (error != "") { %>
+                <div class="err-msg-container ">
+                    <h4 class="err-msg"><%= error %> </h4>
+                    <button onclick="handleMsg()">X</button>
+                </div>
+            <% } %>
+            <% if (success != "" ) { %>
+                    <div class="success-msg-container">
+                        <h4 class="success-msg"><%= success %></h4>
+                        <button onclick="handleMsg()">X</button>
+                    </div>
+            <% } %>
+        </div>
+    <% } %>
+    
+    <script>
+        const handleMsg =  function() {
+          const cl =   document.getElementById("err-success-click");
+          cl.style.display = "none";
+        }
+    </script>
 </header>

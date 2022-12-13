@@ -17,28 +17,28 @@
         <div class="up-content">
             <div class="up-profile-container">
                 <div class="up-p-img">
-                    <img src="https://amentotech.com/projects/workreap/wp-content/uploads/2019/03/4-1.jpg" alt="">
+                    <img src="<%= profile.img_url %>" alt="">
                 </div>
-                <h1>Janaka Chamith</h1>
-                <h5>Looking for a web developer ? Then you are at the right place</h5>
+                <h1><%= profile.username %> </h1>
+                <h5><%= profile.bio %> </h5>
                 <h3><span>(23)</span> Feedbacks</h3>
                 <hr>
                 <div class="up-user-details">
                     <i class="fa-regular fa-location-dot"></i>
                     <span>From</span>
-                    <h4>Kandy</h4>
+                    <h4><%= profile.district %> </h4>
                 </div>
                 <div class="up-user-details">
                     <i class="fa-solid fa-person"></i>
                     <span>Member since</span>
-                    <h4>2018</h4>
+                    <h4><%= profile.year %></h4>
                 </div>
                 <hr>
             </div>
             <div class="up-desc-container">
                 <div class="up-desc-description">
                     <h4>Description</h3>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. At numquam alias, culpa aliquam tempore eveniet reiciendis eligendi atque recusandae tempora.</p>
+                        <p>><%= profile.description %></p>
                 </div>
                 <div class="up-desc-description">
                     <h4>Languages</h3>
@@ -51,20 +51,22 @@
             </div>
         </div>
         <div class="up-orders-container">
-            <% for(let i=0 ;i < 5 ; i++) {%> 
+            <% for(let i=0 ; i < gigs.length ; i++) {%> 
+            <a href="/gig/view/<%= gigs[i].id %>">
             <div class="up-orders-gig">
-                <img class="up-orders-gig-image" src="https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs3/169097922/original/c2dcf16170b7cb7a65b7d6062711c8539f0976d8.jpg" alt="">
+                <img class="up-orders-gig-image" src="<%= gigs[i].img_url %> " alt="">
                 <div class="up-gig-desc">
                     <div class="up-gig-profile">
-                        <img src="https://fiverr-res.cloudinary.com/t_profile_original,q_auto,f_auto/attachments/profile/photo/cee38926920c8b1cea429397a7c90f60-1596980222033/fbec73e7-df8a-43cb-a08b-ceaee1c6cc4a.jpeg" alt="">
-                        <h4>Janaka Chamith</h4>
+                        <img src=<%= profile.img_url%> alt="">
+                        <h4><%= profile.username%></h4>
                     </div>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet, accusantium!</p>
+                    <p><%= gigs[i].title %></p>
                     <h4><span>(4) </span> Feedbacks</h4>
                 </div>
                 <hr color="lightgray">
-                <h3><span>Starting at </span> lkr. 500</h3>
+                <h3><span>Starting at </span>Lkr: <%= gigs[i].price %></h3>
             </div>
+            </a>
             <% } %> 
         </div>
         

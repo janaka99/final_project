@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/stylesheets/adminTemplate.css">
+    <link rel="stylesheet" href="/stylesheets/adminhome.css">
+    <link rel="stylesheet" href="/stylesheets/adminsidebar.css">
+    <link rel="stylesheet" href="/stylesheets/adminManageEmployee.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+                <%- include("sidebar.ejs") %> 
+                
+                <div class="template-screens">
+                    <div class="pending-gigs">
+                        <div class="mnge-container">
+                            <div class="mnge-header">
+                                <button>Add New Employee</button>
+                            </div>
+                            <div class="mnge-emp-table">
+                                <table>
+                                    <colgroup>
+                                        <col style="width:50%">
+                                        <col style="width:5%">
+                                        <col style="width:45%">
+                                    </colgroup>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th>Id</th>
+                                            <th>Take Action</th>
+                                        </tr>
+                                        <% for(i=0; i<gigs.length ;i++){ %> 
+                                        <tr>
+                                            <td><%= gigs[i].title %> </td>
+                                            <td><%= gigs[i].id %> </td>
+
+                                            <td class="mnge-action-btn">
+                                                <button><a href="/admin/dashboard/pending-gig-approvals/rejected/<%= gigs[i].id %>">View</a></button>
+                                                <button>Approve</button>
+                                                <button>Reject</button>
+                                            </td>
+                                        </tr>
+                                        <% } %> 
+                              
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+           </div>
+    </div>
+
+    <script src="/javascript/admin.js"></script>
+</body>
+</html>
