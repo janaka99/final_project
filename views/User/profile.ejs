@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="register.cc">
 </head>
 <body>
@@ -17,11 +17,21 @@
         <div class="up-content">
             <div class="up-profile-container">
                 <div class="up-p-img">
-                    <img src="<%= profile.img_url %>" alt="">
+                    <% if (profile.img_url == null ) { %>
+                    <img src="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" alt="">
+                     
+                    <% } else{%>
+                        <img src="<%= profile.img_url  %>" alt="">
+                    <% } %> 
                 </div>
                 <h1><%= profile.username %> </h1>
-                <h5><%= profile.bio %> </h5>
-                <h3><span>(23)</span> Feedbacks</h3>
+                <% if (profile.bio == null) { %>
+                    <h5>Bio goes here</h5>
+                     
+                    <% } else{%>
+                        <h5><%= profile.bio %></h5>
+
+                    <% } %> 
                 <hr>
                 <div class="up-user-details">
                     <i class="fa-regular fa-location-dot"></i>
@@ -38,15 +48,13 @@
             <div class="up-desc-container">
                 <div class="up-desc-description">
                     <h4>Description</h3>
-                        <p>><%= profile.description %></p>
-                </div>
-                <div class="up-desc-description">
-                    <h4>Languages</h3>
-                        <ul>
-                            <li>English</li>
-                            <li>Sinhala</li>
-                            <li>Tamil</li>
-                        </ul>
+                        <% if (profile.description == null) { %>
+                            <p>Description goes here</p>
+                             
+                            <% } else{%>
+                                <p><%= profile.description %></p>
+    
+                            <% } %> 
                 </div>
             </div>
         </div>
@@ -57,7 +65,12 @@
                 <img class="up-orders-gig-image" src="<%= gigs[i].img_url %> " alt="">
                 <div class="up-gig-desc">
                     <div class="up-gig-profile">
-                        <img src=<%= profile.img_url%> alt="">
+                        <% if (profile.img_url == null) { %>
+                            <img src="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" alt="">
+                             
+                            <% } else{%>
+                                <img src="<%= profile.img_url  %>" alt="">
+                            <% } %> 
                         <h4><%= profile.username%></h4>
                     </div>
                     <p><%= gigs[i].title %></p>
@@ -70,7 +83,7 @@
             <% } %> 
         </div>
         
-        <button class="up-add-new-gig"><a href="">Add New Gig</a></button>
+        <button class="up-add-new-gig"><a href="/gig/add-new-gig">Add New Gig</a></button>
 
     </div>
     

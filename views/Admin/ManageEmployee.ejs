@@ -1,6 +1,6 @@
 <div class="mnge-container">
     <div class="mnge-header">
-        <button>Add New Employee</button>
+      <a href="/admin/dashboard/add-new-employee"><button>Add New Employee</button></a>  
     </div>
     <div class="mnge-emp-table">
         <table>
@@ -22,9 +22,7 @@
                     <td><%= employees[i].id %> </td>
                     <td><%= employees[i].role %> </td>
                     <td class="mnge-action-btn">
-                        <button>Edit</button>
                         <button>Remove</button>
-                        <button>Pause</button>
                     </td>
                 </tr>
                 <% } %> 

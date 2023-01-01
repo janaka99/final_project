@@ -20,6 +20,7 @@ var multer = require("multer");
 const { fstat } = require("fs");
 
 router.get("/home", isLoggedIn, (req, res) => {
+  console.log("asda");
   const id = req.user.id;
   const query1 = "select * from User where id=" + id + "";
   Con.query(query1, (err, results) => {
@@ -27,22 +28,23 @@ router.get("/home", isLoggedIn, (req, res) => {
       res.redirect("/");
     } else {
       let last31DayEarnings = 0;
+
       const query2 =
-        "select sum(price) from Orders where status='completed' and sellerId=" +
+        "select sum(totalEarnings) as total, sum(balance) as balance, sum(withdrawed) as withdrawed, sum(pending_clearance) as pending from User where id=" +
         id +
         "";
       Con.query(query2, (err, results) => {
         if (err) {
+          console.log(err);
           res.redirect("/");
         } else {
           if (results == null) {
-            res.render("user/Home", {
+            res.render("User/home", {
               userDetails: results[0],
               last31DayEarnings,
             });
           } else {
-            last31DayEarnings = results;
-            res.render("user/Home", {
+            res.render("User/home", {
               userDetails: results[0],
               last31DayEarnings,
             });
@@ -74,7 +76,7 @@ router.post("/login", async (req, res) => {
     const value = await loginSchema.validateAsync(data);
 
     const sqlQuery =
-      "SELECT User.email, User.password, User.username,User.id , p.img_url as img_url FROM User left join profilePictures as p on p.userId=User.id  WHERE email = ? and email_verified=true";
+      "SELECT User.email, User.role, User.password, User.username,User.id , p.img_url as img_url FROM User left join profilePictures as p on p.userId=User.id  WHERE email = ? and email_verified=true";
     Con.query(sqlQuery, [value.email], async (err, result) => {
       if (err) {
         console.log(err);
@@ -108,7 +110,9 @@ router.post("/login", async (req, res) => {
               email: result[0].email,
               id: result[0].id,
               img_url: result[0].img_url,
+              role: result[0].role,
             };
+            console.log(user);
             // const accessToken = jwt.sign(user, process.env.JSONWEBTOKEN_SECRET);
             req.session.accessToken = user;
             res.redirect("/");
@@ -134,45 +138,65 @@ router.post("/register", async (req, res) => {
     const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
     const hashedPassword = await bcrypt.hash(value.password, salt);
 
-    // //create a connection with database
-    const sqlQuery =
-      "INSERT INTO User(username,firstName,lastName,phoneNumber,email,password,province,district) VALUES(?,?,?,?,?,?,?,?)";
     Con.query(
-      sqlQuery,
-      [
-        value.username,
-        value.firstName,
-        value.lastName,
-        value.phoneNumber,
-        value.email,
-        hashedPassword,
-        value.province,
-        value.district,
-      ],
+      "select email from User where email='" + value.email + "'",
       (err, result) => {
         if (err) {
-          req.flash("error", "Check all the fields and try again");
-          res.redirect("back");
         } else {
-          const tk = {
-            email: value.email,
-            username: value.username,
-          };
-          const accessToken = jwt.sign(tk, process.env.JSONWEBTOKEN_SECRET);
-          sendVerifyEmail(value.email, accessToken);
-          const sqlQuery3 = `INSERT INTO verificationTokens(tokenType,token,userId) values("email",'${accessToken}',${result.insertId})`;
-          Con.query(sqlQuery3, (err, result) => {
-            if (err) {
-              console.log(err);
-              const sqlQuery4 = `DELETE FROM User WHERE email='${value.email}'`;
-              Con.query(sqlQuery4);
-              req.flash("error", "Check all the fields and try again");
-              res.redirect("back");
-            } else {
-              req.flash("success", "Please verify your email and login");
-              res.redirect("/");
-            }
-          });
+          if (result.length != 1) {
+            // //create a connection with database
+            const sqlQuery =
+              "INSERT INTO User(username,firstName,lastName,phoneNumber,email,password,province,district,role) VALUES(?,?,?,?,?,?,?,?,'freelancer')";
+            Con.query(
+              sqlQuery,
+              [
+                value.username,
+                value.firstName,
+                value.lastName,
+                value.phoneNumber,
+                value.email,
+                hashedPassword,
+                value.province,
+                value.district,
+              ],
+              (err, result) => {
+                if (err) {
+                  console.log(err);
+                  req.flash("error", "Check all the fields and try again");
+                  res.redirect("back");
+                } else {
+                  const tk = {
+                    email: value.email,
+                    username: value.username,
+                  };
+                  const accessToken = jwt.sign(
+                    tk,
+                    process.env.JSONWEBTOKEN_SECRET
+                  );
+                  sendVerifyEmail(value.email, accessToken);
+                  const sqlQuery3 = `INSERT INTO verificationTokens(tokenType,token,userId) values("email",'${accessToken}',${result.insertId})`;
+                  Con.query(sqlQuery3, (err, result) => {
+                    if (err) {
+                      console.log(err);
+                      const sqlQuery4 = `DELETE FROM User WHERE email='${value.email}'`;
+                      Con.query(sqlQuery4);
+                      req.flash("error", "Check all the fields and try again");
+                      res.redirect("back");
+                    } else {
+                      req.flash(
+                        "success",
+                        "Please verify your email and login"
+                      );
+                      res.redirect("back");
+                    }
+                  });
+                }
+              }
+            );
+          } else {
+            req.flash("error", "User already exists");
+            res.redirect("/");
+          }
         }
       }
     );
@@ -189,6 +213,75 @@ router.post("/register", async (req, res) => {
     }
   }
 });
+
+// // Register new user(freelancer)
+// router.post("/register-empployee", async (req, res) => {
+//   try {
+//     //Get data from HTML request Body
+//     const data = req.body;
+
+//     //Validate data using Joi validation package
+//     const value = await registerSchema.validateAsync(data);
+//     const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
+//     const hashedPassword = await bcrypt.hash(value.password, salt);
+
+//     // //create a connection with database
+//     const sqlQuery =
+//       "INSERT INTO User(username,firstName,lastName,phoneNumber,email,password,province,district,role) VALUES(?,?,?,?,?,?,?,?,?)";
+//     Con.query(
+//       sqlQuery,
+//       [
+//         value.username,
+//         value.firstName,
+//         value.lastName,
+//         value.phoneNumber,
+//         value.email,
+//         hashedPassword,
+//         value.province,
+//         value.district,
+//         value.role,
+//       ],
+//       (err, result) => {
+//         if (err) {
+//           req.flash("error", "Check all the fields and try again");
+//           res.redirect("back");
+//         } else {
+//           const tk = {
+//             email: value.email,
+//             username: value.username,
+//           };
+//           const accessToken = jwt.sign(tk, process.env.JSONWEBTOKEN_SECRET);
+//           sendVerifyEmail(value.email, accessToken);
+//           const sqlQuery3 = `INSERT INTO verificationTokens(tokenType,token,userId) values("email",'${accessToken}',${result.insertId})`;
+//           Con.query(sqlQuery3, (err, result) => {
+//             if (err) {
+//               console.log(err);
+//               const sqlQuery4 = `DELETE FROM User WHERE email='${value.email}'`;
+//               Con.query(sqlQuery4);
+//               req.flash("error", "Check all the fields and try again");
+//               res.redirect("back");
+//             } else {
+//               req.flash("success", "Please verify your email and login");
+//               res.redirect("/");
+//             }
+//           });
+//         }
+//       }
+//     );
+//   } catch (error) {
+//     //Handle Errors
+//     if (error.details[0].message) {
+//       console.error();
+//       req.flash("error", error.details[0].message);
+//       res.redirect("back");
+//     } else {
+//       console.error(error);
+//       req.flash("error", "Check all the fields and try again");
+//       res.redirect("back");
+//     }
+//   }
+// });
+
 router.get("/register", (req, res) => {
   res.render("register");
 });
@@ -196,16 +289,19 @@ router.get("/register", (req, res) => {
 //load your profile
 router.get("/profile", isLoggedIn, (req, res) => {
   const id = req.user.id;
+  console.log("userid ", id);
   const query1 =
-    "select User.username, User.bio, User.district, User.description ,year(User.created_at) as year,month(User.created_at) as month, profilePictures.img_url from User left join profilePictures on profilePictures.userId=?";
+    "select User.username, User.bio, User.district, User.description ,year(User.created_at) as year,month(User.created_at) as month, profilePictures.img_url from User left outer join profilePictures on profilePictures.userId=User.id where User.id=?";
   Con.query(query1, [id], (err, result) => {
     if (err) {
       console.log(err);
       res.render("404error");
     } else {
+      console.log("here result ", result);
+
       const profile = result[0];
       const query2 =
-        "select   gig.title, gig.description, gig.price, gig.id,gigImages.img_url from gig inner join gigImages where " +
+        "select  gig.title, gig.description,gig.feedbackCount, gig.price, gig.id,gigImages.img_url from gig inner join gigImages inner join Feedback where " +
         "gigImages.gigId=gig.id and gigImages.id=(select id from gigImages where gigId=gig.id limit 1) and gig.userId=? ";
 
       Con.query(query2, [id], (err, result) => {
@@ -214,7 +310,8 @@ router.get("/profile", isLoggedIn, (req, res) => {
           res.render("404error");
         } else {
           const gigs = result;
-          console.log(gigs);
+          console.log("gigs   ", gigs);
+          console.log("dasdasdasd ", profile);
           res.render("User/profile", { profile, gigs });
         }
       });
@@ -621,34 +718,47 @@ router.post("/settings/update-profile-picture", isLoggedIn, (req, res) => {
               res.redirect("back");
             } else {
               console.log(results.length);
-              if (results.length == 1) {
-                cloudinary.uploader.destroy(results[0].publicId);
-              }
               const result = await cloudinary.uploader.upload(files.path);
-              // const files = req.files
-              console.log(result);
               const newPath = result.url;
               const publicID = result.public_id;
               fs.unlinkSync(files.path);
-              const query2 =
-                "INSERT INTO profilePictures(publicId, userId,img_url) values(?,?,?)";
-              Con.query(query2, [publicID, user, newPath], (err, result) => {
-                if (err) {
-                  console.log(err);
-                  req.flash("error", "Something went wrong try again");
-                  res.redirect("back");
-                } else {
-                  req.flash("error", "Profile picture update successfull");
-                  res.redirect("back");
-                }
-              });
+              if (results.length == 1) {
+                const query2 =
+                  "Update profilePictures set publicId=?, img_url=? where userId=?";
+                Con.query(query2, [publicID, newPath, user], (err, result) => {
+                  if (err) {
+                    console.log(err);
+                    cloudinary.uploader.destroy(publicID);
+                    req.flash("error", "Something went wrong try again");
+                    res.redirect("back");
+                  } else {
+                    req.flash("success", "Profile picture update successfull");
+                    res.redirect("back");
+                  }
+                });
+              } else {
+                const query2 =
+                  "INSERT INTO profilePictures(publicId, userId,img_url) values(?,?,?)";
+                Con.query(query2, [publicID, user, newPath], (err, result) => {
+                  if (err) {
+                    console.log(err);
+                    cloudinary.uploader.destroy(publicID);
+                    req.flash("error", "Something went wrong try again");
+                    res.redirect("back");
+                  } else {
+                    req.flash("success", "Profile picture update successfull");
+                    res.redirect("back");
+                  }
+                });
+              }
             }
           });
         }
       }
     });
   } catch (error) {
-    console.log("Asd ", error);
+    req.flash("error", "Something went wrong try again");
+    res.redirect("back");
   }
 });
 
@@ -657,13 +767,14 @@ router.get("/freelacer/profile/:id", (req, res) => {
   const id = req.params.id;
   console.log(id);
   const query1 =
-    "select User.username, User.bio, User.district, User.description ,year(User.created_at) as year,month(User.created_at) as month, profilePictures.img_url from User left join profilePictures on profilePictures.userId=?";
+    "select User.username, User.bio, User.district, User.description ,year(User.created_at) as year,month(User.created_at) as month, profilePictures.img_url from User left outer join profilePictures on profilePictures.userId=User.id where User.id=?";
   Con.query(query1, [id], (err, result) => {
     if (err) {
       console.log(err);
       res.render("404error");
     } else {
       const profile = result[0];
+      console.log("asda ss", profile);
       const query2 =
         "select   gig.title, gig.description, gig.price, gig.id,gigImages.img_url from gig inner join gigImages where " +
         "gigImages.gigId=gig.id and gigImages.id=(select id from gigImages where gigId=gig.id limit 1) and gig.userId=? and gig.status='approved'";

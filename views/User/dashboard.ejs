@@ -19,7 +19,10 @@
                     <span>freel</span>
                     <span>ancer.</span>
                 </div>
-
+                <ul>
+                    <li class="admin-sidebar-navigation-title"></li>
+                    <li><a href="/user/home">Home</a></li>
+                </ul>
                 <ul>
                     <li class="admin-sidebar-navigation-title">MANAGE ORDERS AS seller</li>
                     <li><a href="/order/orders/started">Current Orders</a></li>
@@ -32,6 +35,11 @@
                     <li><a href="/order/my-orders/delivered">Delivered Orders</a></li>
                     <li><a href="/order/my-orders/completed">Completed Orders</a></li>
                 </ul>
+                <ul>
+                    <li class="admin-sidebar-navigation-title">MANAGE Gigs</li>
+                    <li><a href="/gig/add-new-gig">Add new gig</a></li>
+                    <li><a href="/gig/see/all-gigs ">View Gigs</a></li>
+                </ul>
            </div>
            <div class="admin-layout">
                 <div class="admin-layout-header">
@@ -39,10 +47,10 @@
                         <i class="fa fa-user" aria-hidden="true"></i>
                         <i class="fa fa-sort-desc" aria-hidden="true"></i>
                     </div>
-                    <div class="admin-layout-header-content">
+                    <div class="admin-layout-header-content" style="z-index: 1111;">
                         <div class="admin-layout-header-content-profile">
                             <div class="admin-layout-header-content-profile-image">
-                                <img src="" alt="">
+                                <img src="<%= currentUser.img_url %> " alt="">
                             </div>
                             <!-- <div class="admin-layout-header-content-profile-upperArrow"></div> -->
                             <ul>
@@ -60,7 +68,7 @@
                                 </li>
                                 <li>
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                    <a href="">Log Out</a>
+                                    <a href="/user/logout">Log Out</a>
                                 </li>
                             </ul>
                         </div>

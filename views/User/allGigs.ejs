@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/stylesheets/adminTemplate.css">
     <link rel="stylesheet" href="/stylesheets/adminhome.css">
+    <link rel="stylesheet" href="/stylesheets/orders.css">
     <link rel="stylesheet" href="/stylesheets/adminsidebar.css">
     <link rel="stylesheet" href="/stylesheets/adminManageEmployee.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -13,13 +16,13 @@
     <title>Dashboard</title>
 </head>
 <body>
-                <%- include("sidebar.ejs") %> 
+                <%- include("dashboard.ejs") %> 
                 
                 <div class="template-screens">
                     <div class="pending-gigs">
                         <div class="mnge-container">
                             <div class="mnge-header">
-                                <h3>Active Gigs</h3>
+                                <h3>My Gigs</h3>
                             </div>
                             <div class="mnge-emp-table">
                                 <table>
@@ -38,11 +41,14 @@
                                             <td><%= gigs[i].title %> </td>
                                             <td><%= gigs[i].id %> </td>
 
-                                            <td class="mnge-action-btn" style="display: flex;">
-                                                <button><a href="/admin/dashboard/pending-gig-approvals/approved/<%= gigs[i].id %>">View</a></button>
-                                                <form action="/admin/dashboard/pending-gig-approvals/disApprove/<%= gigs[i].id %>" method="POST">
-                                                    <button  style="background-color: rgb(242, 85, 28);" type="submit">Rejects</button>
-                                                </form>     
+                                            <td class="mnge-action-btn" style="display:flex;">
+                                                <button><a href="/admin/dashboard/pending-gig-approvals/pending/<%= gigs[i].id %>">View</a></button>
+                                                <form action="/gig/preview/<%= gigs[i].id %>" method="GET">
+                                                    <button  type="submit">Edit</button>
+                                                </form>   
+                                                <form action="/gig/delete/<%= gigs[i].id %>" method="POST">
+                                                    <button style="background-color: rgb(242, 85, 28);" type="submit">Delete</button>
+                                                </form>   
                                             </td>
                                         </tr>
                                         <% } %> 

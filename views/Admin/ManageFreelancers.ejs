@@ -1,9 +1,12 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/stylesheets/adminTemplate.css">
+    <link rel="stylesheet" href="/stylesheets/register.css">
     <link rel="stylesheet" href="/stylesheets/adminhome.css">
     <link rel="stylesheet" href="/stylesheets/adminsidebar.css">
     <link rel="stylesheet" href="/stylesheets/adminManageEmployee.css">
@@ -19,30 +22,29 @@
                     <div class="pending-gigs">
                         <div class="mnge-container">
                             <div class="mnge-header">
-                                <h3>Active Gigs</h3>
+                              <h4>Manage Freelancers</h4> 
                             </div>
                             <div class="mnge-emp-table">
                                 <table>
                                     <colgroup>
-                                        <col style="width:50%">
+                                        <col style="width:30%">
                                         <col style="width:5%">
-                                        <col style="width:45%">
+                                        <col style="width:30%">
+                                        <col style="width:35%">
                                     </colgroup>
                                         <tr>
-                                            <th>Title</th>
+                                            <th>Name</th>
                                             <th>Id</th>
+                                            <th>Role</th>
                                             <th>Take Action</th>
                                         </tr>
-                                        <% for(i=0; i<gigs.length ;i++){ %> 
+                                        <% for(i=0; i<employees.length ;i++){ %> 
                                         <tr>
-                                            <td><%= gigs[i].title %> </td>
-                                            <td><%= gigs[i].id %> </td>
-
-                                            <td class="mnge-action-btn" style="display: flex;">
-                                                <button><a href="/admin/dashboard/pending-gig-approvals/approved/<%= gigs[i].id %>">View</a></button>
-                                                <form action="/admin/dashboard/pending-gig-approvals/disApprove/<%= gigs[i].id %>" method="POST">
-                                                    <button  style="background-color: rgb(242, 85, 28);" type="submit">Rejects</button>
-                                                </form>     
+                                            <td><%= employees[i].username %> </td>
+                                            <td><%= employees[i].id %> </td>
+                                            <td><%= employees[i].role %> </td>
+                                            <td class="mnge-action-btn">
+                                                <button>Remove</button>
                                             </td>
                                         </tr>
                                         <% } %> 

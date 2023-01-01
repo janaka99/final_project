@@ -24,7 +24,7 @@
                             Total Earnings
                         </div>
                         <div class="dashboard-container-item-desc">
-                            <h3><span>rs</span>  <%= userDetails.balance  %></h3> 
+                            <h3><span>rs</span>  <%-  userDetails.total %></h3> 
                         </div>
                     </div>
                     <div class="dashboard-container-item">
@@ -33,7 +33,7 @@
                                 Balance
                             </div>
                             <div class="dashboard-container-item-desc">
-                               <h3><span>rs</span> <%= userDetails.balance  %> </h3> 
+                               <h3><span>rs</span>  <%- userDetails.balance %> </h3> 
                             </div>
                         </div>
                     </div>
@@ -54,31 +54,12 @@
                             Pending Clearance
                         </div>
                         <div class="dashboard-container-item-desc">
-                            <h3><span>rs</span>  <%= userDetails.pending_clearance  %></h3> 
+                            <h3><span>rs</span>  <%= userDetails.pending  %></h3> 
                         </div>
                     </div>
-                    <div class="dashboard-container-item">
-                        <div class="dashboard-container-item-title">
-                            <div class="dashboard-container-item-title">
-                                Last 31 days Earnings
-                            </div>
-                            <div class="dashboard-container-item-desc">
-                               <h3><span>rs</span> 356.95</h3> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="dashboard-container-item">
-                        <div class="dashboard-container-item-title">
-                            <div class="dashboard-container-item-title">
-                                Withdrawed
-                            </div>
-                            <div class="dashboard-container-item-desc">
-                                <h3><span>rs</span> 356.95</h3> 
-                            </div>
-                        </div>
-                    </div>
+                
                 </div>
-                <div class="dashboard-container-middle">
+                <!-- <div class="dashboard-container-middle">
                     <div class="dashboard-container-item">
                         <div class="dashboard-container-item-title">
                           Pending clearance
@@ -89,8 +70,8 @@
                             <h3><span>rs</span> 356.95</h3> 
                         </div>
                     </div>
-                </div>
-                <div class="dashboard-container-bottom">
+                </div> -->
+                <!-- <div class="dashboard-container-bottom">
                     <div class="dashboard-container-item">
                         <div class="dashboard-container-item-title">
                           
@@ -106,7 +87,7 @@
                             
                         </div>
                     </div>
-                </div>
+                </div> -->
             
             </div>
         </div>

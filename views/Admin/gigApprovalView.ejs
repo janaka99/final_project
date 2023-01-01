@@ -31,10 +31,10 @@
                                 <% } %>
                                 <% if (gig.status == 'pending') { %>
                                     <form action="/admin/dashboard/pending-gig-approvals/approve/<%= gig.id %>" method="POST">
-                                        <button type="submit">Approve</button>
+                                        <button style="margin-right: 20px;" type="submit">Approve</button>
                                     </form>   
                                     <form action="/admin/dashboard/pending-gig-approvals/disApprove/<%= gig.id %>" method="POST">
-                                        <button type="submit">Reject</button>
+                                        <button type="submit">Rejects</button>
                                     </form>      
                                 <% } %>
                             

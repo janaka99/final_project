@@ -88,6 +88,9 @@ app.get("/dashboard", (req, res) => {
   res.render("Freelancer/dashboard");
 });
 
+app.get("*", (req, res) => {
+  res.render("404Error");
+});
 app.listen(3000, () => {
   console.log("Server has started");
 });

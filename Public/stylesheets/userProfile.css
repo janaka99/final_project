@@ -8,9 +8,12 @@
 }
 .up-content{
 width: 100%;
-    
 }
+a{
+    text-decoration: none;
+    color: #000;
 
+}
 .up-profile-container{
     width: calc(100% - 80px);
     border: 1px solid lightgray;

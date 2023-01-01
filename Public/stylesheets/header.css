@@ -196,6 +196,7 @@ body{
     margin: 0 auto;
     padding: 0 20px;
     margin-bottom: 10px;
+    background-color: #cc362e3c;
 
 }
 .success-msg-container{
@@ -204,7 +205,6 @@ body{
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    background-color: #cc362e3c;
     background-color: #2ecc703c;
 
     padding: 0 20px;

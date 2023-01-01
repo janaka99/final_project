@@ -311,6 +311,7 @@ router.post("/complete-order/:id", isLoggedIn, (req, res) => {
                         sellerId +
                         ""
                     );
+
                     res.redirect("/order/my-orders/delivered");
                   }
                 }

@@ -45,25 +45,27 @@
                 </tr>
                 <div class="orders-complete-window">
                     <div class="orders-complete-window-div">
-                        <form action="/order/complete-order/<%= orders[i].id %>" method="POST" >
-                            <input type="hidden" name="gigId" value="<%= orders[i].gigId %>">
-                            <input type="hidden" name="price" value="<%= orders[i].price %>">
-                            <input type="hidden" name="sellerId" value="<%= orders[i].sellerId %>">
-                            <span>Please rate his service</span>
-                            <div>
-                                <label for="">1</label>
-                                <input type="radio" name="rating">
-                                <label for="">2</label>                       
-                                <input type="radio" name="rating">
-                                <label for="">3</label>
-                                <input type="radio" name="rating">
-                                <label for="">4</label>
-                                <input type="radio" name="rating">
-                                <label for="">5</label>
-                                <input type="radio" name="rating">
+                        <form class="orders-completed-form" action="/order/complete-order/<%= orders[i].id %>" method="POST" >
+                            <div class="dotm-content">
+                                <input type="hidden" name="gigId" value="<%= orders[i].gigId %>" />
+                                <input type="hidden" name="price" value="<%= orders[i].price %>" />
+                                <input type="hidden" name="sellerId" value="<%= orders[i].sellerId %>" />
+                                <span>Please rate his service</span>
+                                <div>
+                                    <label for="">1</label>
+                                    <input type="radio" name="rating" value="1">
+                                    <label for="">2</label>                       
+                                    <input type="radio" name="rating" value="2"> 
+                                    <label for="">3</label>
+                                    <input type="radio" name="rating" value="3">
+                                    <label for="">4</label>
+                                    <input type="radio" name="rating" value="4">
+                                    <label for="">5</label>
+                                    <input type="radio" name="rating" value="5">
+                                </div>
+                                <label class="dotm-content-title" for="">Description</label><br>
+                                <textarea name="description" id="" cols="30" rows="5" name="descriptin"></textarea><br>
                             </div>
-                            <label for="">Description</label>
-                            <textarea name="description" id="" cols="30" rows="5" name="descriptin"></textarea>
                             <button type="submit">Mark as Complete</button>
                         </form>
                     </div>

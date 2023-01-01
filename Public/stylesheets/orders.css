@@ -58,7 +58,7 @@
 .orders-deliver-window .orders-deliver-window-div{
     width: 90%;
     max-width: 300px;
-    height: 200px;
+    height: 300px;
     position: absolute;
     background-color: white;
     display: flex;
@@ -89,41 +89,46 @@
     background-color: rgba(0, 0, 0, 0.878);;
     z-index: 111;
     position: fixed;
-    /* display: none; */
+    display: none;
 }
 
-.orders-complete-window .orders-complete-window-div{
+ .orders-complete-window-div{
     width: 90%;
-    max-width: 768px;
+    max-width: 500px;
     height: 300px;
     position: absolute;
     background-color: white;
-}
-
-.orders-complete-window div form{
     padding: 20px;
+
+}
+.dotm-content{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    justify-content: space-between;
+
 }
-.orders-complete-window div input{
-margin-right: 20px;
+.orders-complete-window-div span{
+    font-size: 17px;
 }
-.orders-complete-window  label{
-    font-size: 15px;
+.orders-complete-window-div label{
+    font-size: 17px;
 }
-.orders-complete-window div span{
-    font-size: 15px;
+.orders-complete-window-div button{
+    border: none;
 }
-.orders-complete-window div button{
-    margin-top: 20px;  
-    padding: 20px 0;
-    font-weight: 700;
-    font-size: 16px;
-    background-color: rgba(172, 255, 47, 0.89);
-    border: none;;
+.orders-complete-window-div button{
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    background-color: rgb(170, 255, 0);
     cursor: pointer;
+}
+.dotm-content-title{
+    margin-top: 30px;
 }
 .hide-deliver{
     display: flex;
 }
+
+
+

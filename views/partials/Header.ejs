@@ -19,8 +19,15 @@
                 <% }else{ %> 
                     
                     <a href="/user/logout " style="text-decoration: none;  font-weight: 600;"> <li class="header-register-btn">Log out</li></a>
+                    <% if (currentUser.role == "freelancer") { %>
+                        <a href="/user/home " style="text-decoration: none;  font-weight: 600;"> <li class="header-register-btn">Dashboard</li></a>
+                     
+                    <% } else if(currentUser.role == "employee" || currentUser.role == "admin"){%>
+                    <a href="/admin/Dashboard " style="text-decoration: none;  font-weight: 600;"> <li class="header-register-btn">Admin Area</li></a>
+                    <a href="/user/home " style="text-decoration: none;  font-weight: 600;"> <li class="header-register-btn">Dashboard</li></a>
+                   
+                    <%}%>
                 <%}%>
-                
             </ul>
         </div>
         <div class="header-burger">

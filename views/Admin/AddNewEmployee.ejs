@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/stylesheets/adminTemplate.css">
     <link rel="stylesheet" href="/stylesheets/adminAddNewEmployee.css">
+    <link rel="stylesheet" href="/stylesheets/register.css">
     <link rel="stylesheet" href="/stylesheets/adminhome.css">
     <link rel="stylesheet" href="/stylesheets/adminsidebar.css">
     <link rel="stylesheet" href="/stylesheets/adminManageEmployee.css">
@@ -18,38 +19,94 @@
                 
                 <div class="template-screens">
                     <div class="pending-gigs">
-                        <div class="mnge-container">
+                        <div class="mng-container">
                             <div class="mnge-adnm-header">
                             <h3>Add New Employee</h3>
                             </div>
-                            <div class="mnge-adnm-form">
-                                <form action="/admin/dashboard/add-new-employee" method="POST">
-                                    <div>
-                                        <label for="">Username</label>
-                                        <input type="text" name="username" id="">
-                                    </div>
-                                    <div>
-                                        <label for="">email</label>
-                                        <input type="text" name="email" id="">
-                                    </div>
-                                    <div>
-                                        <label for="">firstName</label>
-                                        <input type="text" name="firstName" id="">
-                                    </div>
-                                    <div>
-                                        <label for="">lastName</label>
-                                        <input type="text" name="lastName" id="">
-                                    </div>
-                                    <div>
-                                        <label for="">phoneNumber</label>
-                                        <input type="text" name="phoneNumber" id="">
-                                    </div>
-                                    <div>
-                                        <label for="">Password</label>
-                                        <input type="text" name="password" id="">
-                                    </div>
-                                    <button type="submit">Register</button>
-                                </form>
+                            <div class="mnge-adnm-form"  style="padding-top: 30px; padding-bottom: 30px;" >
+                                <div class="reg-container" > 
+                                    <h4>Register </h4>
+                                    
+                                    <form action="/admin/dashboard/add-new-employee" method="post" class="reg-form">
+                                        <div class="reg-div">
+                                            <label>First Name</label>
+                                            <input type="text" name="firstName" />
+                                        </div>
+                                        <div class="reg-div">
+                                            <label>Last Name</label>
+                                            <input type="text" name="lastName" />
+                                        </div>
+                                        <div class="reg-div">
+                                            <label>Username</label>
+                                            <input type="text" name="username" />
+                                        </div>
+                                        <div class="reg-div">
+                                            <label>Phone number</label>
+                                            <input type="text" name="phoneNumber" id="pno" />
+                                        </div>
+                                        <div class="reg-div">
+                                            <label>Email</label>
+                                            <input type="text" name="email" id="email" />
+                                        </div>
+                                        <div class="reg-div">
+                                            <label>Password</label>
+                                            <input type="password" name="password" id="password" />
+                                        </div>
+                                        <div class="reg-div">
+                                            <label for="">Province</label>
+                                            <select name="province" id="">
+                                                <option value="central">Central</option>
+                                                <option value="eastern">eastern</option>
+                                                <option value="northern">northern</option>
+                                                <option value="southern">southern</option>
+                                                <option value="western">western</option>
+                                                <option value="north western">north western</option>
+                                                <option value="north central">north central</option>
+                                                <option value="uva">uva</option>
+                                                <option value="sabaragamuwa">sabaragamuwa</option>
+                                            </select>
+                                        </div>
+                                        <div class="reg-div">
+                                            <label for="">District</label>
+                                            <select name="district" id="" >
+                                                <option value="kandy">Kandy</option>
+                                                <option value="ampara">Ampara</option>
+                                                <option value="anuradhapura">Anuradhapura</option>
+                                                <option value="badulla">Badulla</option>
+                                                <option value="batticaloa">Batticaloa</option>
+                                                <option value="colombo">Colombo</option>
+                                                <option value="galle">Galle</option>
+                                                <option value="gampaha">Gampaha</option>
+                                                <option value="hambantota">Hambantota</option>
+                                                <option value="jaffna">Jaffna</option>
+                                                <option value="kalutara">Kalutara</option>
+                                                <option value="kegalle">Kegalle</option>
+                                                <option value="kilinochchi">Kilinochchi</option>
+                                                <option value="kurunegala">Kurunegala</option>
+                                                <option value="mannar">Mannar</option>
+                                                <option value="matale">Matale</option>
+                                                <option value="matara">Matara</option>
+                                                <option value="monaragala">Monaragala</option>
+                                                <option value="mullaitivu">Mullaitivu</option>
+                                                <option value="nuwara eliya">Nuwara eliya</option>
+                                                <option value="polonnaruwa">Polonnaruwa</option>
+                                                <option value="puttalam">Puttalam</option>
+                                                <option value="ratnapura">Ratnapura</option>
+                                                <option value="trincomalee">Trincomalee</option>
+                                                <option value="vavuniya">Vavuniya</option>
+                                            </select>
+                                        </div>
+                                        <div class="reg-div">
+                                            <label>Password</label>
+                                            <select name="role" id="">
+                                                <option value="employee">Employee</option>
+                                                <option value="admin">Admin</option>
+                                            </select>
+                                        </div>
+                                        <div class="reg-div"><button type="submit">Register</button></div>
+                                    </form>
+                                    <h5>Already have an account? <a href="/user/login">login</a></h5>
+                                </div>
                             </div>
                         </div>
                     </div>

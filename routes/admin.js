@@ -1,27 +1,49 @@
 const router = require("express").Router();
 const Con = require("../connection/mysql");
 const { sendVerifyEmail, sendResetEmail } = require("../connection/nodemailer");
-const { registerEmployeeSchema } = require("./userValidation");
+const { isAdmin, isLoggedIn, isEmployeeOrAdmin } = require("../middleware.js");
+const {
+  registerEmployeeSchema,
+  addEmployeeValidationSchema,
+} = require("./userValidation");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+
 // admin home
-router.get("/dashboard", (req, res) => {
-  res.render("Admin/Home");
+router.get("/dashboard", isEmployeeOrAdmin, (req, res) => {
+  const query1 = "select sum(balance) as total from User";
+  Con.query(query1, (err, results) => {
+    if (err) {
+      req.flash("error", "Something went wrong try again");
+      res.redirect("/");
+    } else {
+      const balance = results[0].total;
+      Con.query("select count(id) as od from Orders", (err, results) => {
+        if (err) {
+          req.flash("error", "Something went wrong try again");
+          res.redirect("/");
+        } else {
+          console.log(balance, " ", results[0].od);
+          res.render("Admin/Home", { balance, tOrders: results[0].od });
+        }
+      });
+    }
+  });
 });
 
 // arender add new employee page
-router.get("/dashboard/add-new-employee", (req, res) => {
+router.get("/dashboard/add-new-employee", isAdmin, (req, res) => {
   res.render("Admin/AddNewEmployee");
 });
 
 // register new empployee
-router.post("/dashboard/add-new-employee", async (req, res) => {
+router.post("/dashboard/add-new-employee", isAdmin, async (req, res) => {
   try {
     //Get data from HTML request Body
     const data = req.body;
 
     //Validate data using Joi validation package
-    const value = await registerEmployeeSchema.validateAsync(data);
+    const value = await addEmployeeValidationSchema.validateAsync(data);
     const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_SALT_ROUNDS));
     const hashedPassword = await bcrypt.hash(value.password, salt);
 
@@ -72,7 +94,7 @@ router.post("/dashboard/add-new-employee", async (req, res) => {
 });
 
 // manage employees
-router.get("/dashboard/manage-employees", (req, res) => {
+router.get("/dashboard/manage-employees", isAdmin, (req, res) => {
   Con.query(
     "select username, id ,role  from User where role='employee' or role='admin'",
     (err, result) => {
@@ -86,27 +108,45 @@ router.get("/dashboard/manage-employees", (req, res) => {
     }
   );
 });
-
-// RENDER GIGS FOR APPROVAL ( PENDING)
-router.get("/dashboard/pending-gig-approvals", (req, res) => {
+// manage employees
+router.get("/dashboard/manage-freelancers", isEmployeeOrAdmin, (req, res) => {
   Con.query(
-    "select title, id  from gig where status='pending'",
+    "select username, id ,role  from User where role='freelancer'",
     (err, result) => {
       if (err) {
-        const gig = {
-          title: "",
-          id: "",
-        };
-        res.redirect("/");
+        console.log(err);
+        res.redirect("/admin/dashboard");
       } else {
-        const gigs = result;
-        res.render("Admin/gigApprovals", { gigs });
+        const employees = result;
+        res.render("Admin/ManageFreelancers", { employees });
       }
     }
   );
 });
+// RENDER GIGS FOR APPROVAL ( PENDING)
+router.get(
+  "/dashboard/pending-gig-approvals",
+  isEmployeeOrAdmin,
+  (req, res) => {
+    Con.query(
+      "select title, id  from gig where status='pending'",
+      (err, result) => {
+        if (err) {
+          const gig = {
+            title: "",
+            id: "",
+          };
+          res.redirect("/");
+        } else {
+          const gigs = result;
+          res.render("Admin/gigApprovals", { gigs });
+        }
+      }
+    );
+  }
+);
 // RENDER ACTIVE GIGS
-router.get("/dashboard/active-gigs", (req, res) => {
+router.get("/dashboard/active-gigs", isEmployeeOrAdmin, (req, res) => {
   Con.query(
     "select title, id  from gig where status='approved'",
     (err, result) => {
@@ -124,7 +164,7 @@ router.get("/dashboard/active-gigs", (req, res) => {
   );
 });
 // RENDER REJECTED GIGS
-router.get("/dashboard/rejected-gigs", (req, res) => {
+router.get("/dashboard/rejected-gigs", isEmployeeOrAdmin, (req, res) => {
   Con.query(
     "select title, id  from gig where status='disapproved'",
     (err, result) => {
@@ -143,82 +183,99 @@ router.get("/dashboard/rejected-gigs", (req, res) => {
 });
 
 /// view pending gig
-router.get("/dashboard/pending-gig-approvals/pending/:id", (req, res) => {
-  const id = req.params.id;
-  Con.query(
-    "select title, description,price,id,status  from gig where status='pending' and id=" +
-      id +
-      ";",
-    (err, result) => {
-      if (err) {
-        res.redirect("admin/dashboard/pending-gig-approvals");
-      } else {
-        const gig = result[0];
-        res.render("Admin/gigApprovalView", { gig });
+router.get(
+  "/dashboard/pending-gig-approvals/pending/:id",
+  isEmployeeOrAdmin,
+  (req, res) => {
+    const id = req.params.id;
+    Con.query(
+      "select title, description,price,id,status  from gig where status='pending' and id=" +
+        id +
+        ";",
+      (err, result) => {
+        if (err) {
+          res.redirect("admin/dashboard/pending-gig-approvals");
+        } else {
+          const gig = result[0];
+          res.render("Admin/gigApprovalView", { gig });
+        }
       }
-    }
-  );
-});
+    );
+  }
+);
 
 /// view aprroved gig
-router.get("/dashboard/pending-gig-approvals/approved/:id", (req, res) => {
-  const id = req.params.id;
-  Con.query(
-    "select title, description,price,id,status  from gig where status='approved' and id=" +
-      id +
-      ";",
-    (err, result) => {
-      if (err) {
-        res.redirect("admin/dashboard/active-gigs");
-      } else {
-        const gig = result[0];
-        res.render("Admin/gigApprovalView", { gig });
+router.get(
+  "/dashboard/pending-gig-approvals/approved/:id",
+  isEmployeeOrAdmin,
+  (req, res) => {
+    const id = req.params.id;
+    Con.query(
+      "select title, description,price,id,status  from gig where status='approved' and id=" +
+        id +
+        ";",
+      (err, result) => {
+        if (err) {
+          res.redirect("admin/dashboard/active-gigs");
+        } else {
+          const gig = result[0];
+          res.render("Admin/gigApprovalView", { gig });
+        }
       }
-    }
-  );
-});
+    );
+  }
+);
 
 /// view rejected gig
-router.get("/dashboard/pending-gig-approvals/rejected/:id", (req, res) => {
-  const id = req.params.id;
-  Con.query(
-    "select title, description,price,id,status  from gig where status='disapproved' and id=" +
-      id +
-      ";",
-    (err, result) => {
-      if (err) {
-        res.redirect("admin/dashboard/rejected-gigs");
-      } else {
-        const gig = result[0];
-        res.render("Admin/gigApprovalView", { gig });
+router.get(
+  "/dashboard/pending-gig-approvals/rejected/:id",
+  isEmployeeOrAdmin,
+  (req, res) => {
+    const id = req.params.id;
+    Con.query(
+      "select title, description,price,id,status  from gig where status='disapproved' and id=" +
+        id +
+        ";",
+      (err, result) => {
+        if (err) {
+          res.redirect("admin/dashboard/rejected-gigs");
+        } else {
+          const gig = result[0];
+          res.render("Admin/gigApprovalView", { gig });
+        }
       }
-    }
-  );
-});
+    );
+  }
+);
 
 /// Approve gig
-router.post("/dashboard/pending-gig-approvals/approve/:gigID", (req, res) => {
-  const gigID = req.params.gigID;
+router.post(
+  "/dashboard/pending-gig-approvals/approve/:gigID",
+  isEmployeeOrAdmin,
+  (req, res) => {
+    const gigID = req.params.gigID;
 
-  if (gigID == null || gigID == undefined) {
-    res.render("404error");
-  } else {
-    const query1 = "update gig set status='approved' where id=" + gigID + ";";
-    Con.query(query1, [], (err, result) => {
-      if (err) {
-        req.flash("error", "System error try again!");
-        res.redirect("back");
-      } else {
-        req.flash("success", "SuccessFully approved!");
-        res.redirect("/admin/dashboard/pending-gig-approvals");
-      }
-    });
+    if (gigID == null || gigID == undefined) {
+      res.render("404error");
+    } else {
+      const query1 = "update gig set status='approved' where id=" + gigID + ";";
+      Con.query(query1, [], (err, result) => {
+        if (err) {
+          req.flash("error", "System error try again!");
+          res.redirect("back");
+        } else {
+          req.flash("success", "SuccessFully approved!");
+          res.redirect("/admin/dashboard/pending-gig-approvals");
+        }
+      });
+    }
   }
-});
+);
 
-/// Dis Approve gig
+/// Dis-approve gig
 router.post(
   "/dashboard/pending-gig-approvals/disApprove/:gigID",
+  isEmployeeOrAdmin,
   (req, res) => {
     const gigID = req.params.gigID;
     if (gigID == null || gigID == undefined) {
@@ -238,5 +295,13 @@ router.post(
     }
   }
 );
+
+//disable Freelancer
+
+router.post("/dashboard/disable-freelancer?:id", (req, res) => {
+  const id = req.params.id;
+
+  Con.query("");
+});
 
 module.exports = router;

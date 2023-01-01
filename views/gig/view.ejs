@@ -79,36 +79,45 @@
                             
                     </div>
                     <div class="dgig-deliverydetails">
-                            <ul class="dgig-list-item">
-                                <li><span><i class="fa-solid fa-bookmark"></i></span> English,Sinhala</li>
-                                <li><span><i class="fa-solid fa-bookmark"></i></span> SriLanka</li>
-                            </ul>
                             
                     </div>
                     <div class="dgig-buyNow" >
                                 <p class="dgig-buynow-intro">*This price is not accurate as mentioned above it vary as per work nature</p><br>
                                 <div class="dgig-button-container">
-                                    <button type="submit" class="dgig-btnContact">Contact Seller</button>
-                                    <button type="submit" class="dgig-btnBuy" onclick="handleBuyNow()">Buy Now</button>
-                                    <form action="/order/payment/<%= gigData.id %>" method="POST">
-                                        <script 
-                                        src="//checkout.stripe.com/v2/checkout.js"
-                                        class="stripe-button"
-                                        data-key="<%= pbKey %>"
-                                        data-amount="<%= gigData.price * 100 %>"
-                                        data-currency="lkr"
-                                        data-orderId = "10"
-                                        data-name="<%= gigData.title %>"
-                                        data-Locale="auto"
-                                        data-email="janakachamith88@gmail.com"
-                                        ></script>
-                                    </form>
+                                    <!-- <button type="submit" class="dgig-btnBuy" onclick="handleBuyNow()">Buy Now</button> -->
+                                   <% if(currentUser) {%> 
+                                    <% if (currentUser.id != gigData.userId) { %>
+                                        <form action="/order/payment/<%= gigData.id %>" method="POST">
+                                            <script 
+                                            src="//checkout.stripe.com/v2/checkout.js"
+                                            class="stripe-button"
+                                            data-key="<%= pbKey %>"
+                                            data-amount="<%= gigData.price * 100 %>"
+                                            data-currency="lkr"
+                                            data-orderId = "10"
+                                            data-name="<%= gigData.title %>"
+                                            data-Locale="auto"
+                                            data-email="janakachamith88@gmail.com"
+                                            ></script>
+                                        </form>
+                                    <% }%>
+        
+                                    
+                                    <% }else{ %>
+                                        <a style="text-decoration: none; color: white;" href="/user/login"> <button type="submit" class="dgig-btnContact">Login To buy</button>   </a>
+                                                                        
+                                    <% } %> 
                                 </div>
                     </div>
 
                     <div class="dgig-profile">
                         <div class="dgig-profile-box">
-                                    <img src="<%= gigData.img_url %> " alt="">
+                            <% if (gigData.img_url == null) { %>
+                                <img src="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" alt="">
+                                 
+                                <% } else{%>
+                                    <img src="<%= gigData.img_url  %>" alt="">
+                                <% } %> 
                                     <h3><% gigData.username %> </h3>
     
                         </div>

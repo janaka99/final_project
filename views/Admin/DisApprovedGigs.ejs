@@ -19,7 +19,7 @@
                     <div class="pending-gigs">
                         <div class="mnge-container">
                             <div class="mnge-header">
-                                <button>Add New Employee</button>
+                            <h3>Rejected Gigs</h3>
                             </div>
                             <div class="mnge-emp-table">
                                 <table>
@@ -38,10 +38,12 @@
                                             <td><%= gigs[i].title %> </td>
                                             <td><%= gigs[i].id %> </td>
 
-                                            <td class="mnge-action-btn">
+                                            <td class="mnge-action-btn" style="display: flex;">
                                                 <button><a href="/admin/dashboard/pending-gig-approvals/rejected/<%= gigs[i].id %>">View</a></button>
-                                                <button>Approve</button>
-                                                <button>Reject</button>
+                                                    <form action="/admin/dashboard/pending-gig-approvals/approve/<%= gigs[i].id %>" method="POST">
+                                                        <button  type="submit">Approve</button>
+                                                    </form>   
+
                                             </td>
                                         </tr>
                                         <% } %> 
