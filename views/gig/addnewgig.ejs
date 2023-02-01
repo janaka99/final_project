@@ -19,12 +19,7 @@
             <!-- <form  > -->
             <form action="/gig/add-new-gig" method="POST" enctype="multipart/form-data">
                 <span id="adng-error-container"></span>
-                <% if(error) {%>                                
-                        <span><%= error%> </span>
-                <% } %> 
-                <% if(success){%> 
-                    <span><%= success %> </span>
-                <% } %> 
+
                 <div class="adng-container-div">
                     <label for="">Title</label>
                     <textarea class="adng-title" name="title" id="adng-title" type="text" maxlength="150"></textarea>
@@ -39,7 +34,11 @@
                 </div>
                 <div class="adng-container-div">
                     <label for="">Price</label>
-                    <input type="text" id="adng-price" name="price">
+                    <input type="text" id="adng-price" name="price" placeholder="Rs">
+                </div>
+                <div class="adng-container-div">
+                    <label for="">Duration</label>
+                    <input type="number" id="adng-price" name="duration" placeholder="days">
                 </div>
                 <div class="adng-container-div">
                     <label for="">Portoflio</label>

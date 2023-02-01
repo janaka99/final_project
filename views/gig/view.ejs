@@ -16,13 +16,20 @@
     <%- include("../partials/header.ejs") %> 
        <div class="freelancegig-container" >
             <div class="fgig-description-left">
-                <h2><%= gigData.title %> <span style="color: rgba(136, 136, 136, 0.8);">(41)</span></h2>
-                <div class="dgig-slider">
+                <h2><%= gigData.title %> <span style="color: rgba(136, 136, 136, 0.8);">
+                    <% if( gigData.F_count == null  ) { %>
+                       ( 0 )
+                    
+                    <% } else{%>
+                       ( <%= gigData.F_count %> )
+                        <% } %> 
+                </span></h2>
+                <div class="dgig-slider" style="background-color: gainsboro; overflow: hidden; height: 400px; border: 1px solid rgba(128, 128, 128, 0.802);">
                     <img id="dgig-rating-profile-img" src="" alt="">
                 </div>
-                <div class="dgig-slider-images">
+                <div class="dgig-slider-images" style="height: 100px;  overflow: hidden;">
                     <% for( let i = 0; i < gigImages.length; i++ ) { %>
-                        <img class="dgig-rating-profile-imges"  src="<%= gigImages[i].img_url %> " alt="">
+                        <img class="dgig-rating-profile-imges"   src="<%= gigImages[i].img_url %> " alt="">
                     
                     <% } %>
 
@@ -46,18 +53,63 @@
                         </div>
                         <div class="dgig-rating-desc">
                             <h5><%= feedbacks[i].username %> </h5>
-                            <div class="dgig-rating-stars">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <div class="dgig-rating-line"></div>
-                                <h4 ><%= feedbacks[i].d %></h4>
-                            </div>
-                            <p><%= feedbacks[i].description %></p>      
+                    
+                        <% if (feedbacks[i].rating == 5) { %>
 
-                        </div>
+                                <div class="dgig-rating-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <div class="dgig-rating-line"></div>
+                                    <h4 ><%= feedbacks[i].d %>.<%= feedbacks[i].m %>.<%= feedbacks[i].y %></h4>
+                                </div>
+
+                        <% }else if(feedbacks[i].rating == 4) {%>
+                                <div class="dgig-rating-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <div class="dgig-rating-line"></div>
+                                    <h4 ><%= feedbacks[i].d %>.<%= feedbacks[i].m %>.<%= feedbacks[i].y %></h4>
+                                </div>
+                        <% }else if(feedbacks[i].rating == 3 ) {%>
+                            <div class="dgig-rating-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <div class="dgig-rating-line"></div>
+                                    <h4 ><%= feedbacks[i].d %>.<%= feedbacks[i].m %>.<%= feedbacks[i].y %></h4>
+                                </div>
+                        <% }else if(feedbacks[i].rating == 2 ) {%>
+                            <div class="dgig-rating-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <div class="dgig-rating-line"></div>
+                                    <h4 ><%= feedbacks[i].d %>.<%= feedbacks[i].m %>.<%= feedbacks[i].y %></h4>
+                                </div>
+                        <% }else  {%>
+                            <div class="dgig-rating-stars">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <div class="dgig-rating-line"></div>
+                                    <h4 ><%= feedbacks[i].d %>.<%= feedbacks[i].m %>.<%= feedbacks[i].y %></h4>
+                                </div>
+                        <% } %>
+                        <p><%= feedbacks[i].description %></p>      
+                            </div>
+    
                     </div>
                    <hr>
 
@@ -73,7 +125,7 @@
                 <div class="fgig-priceLine">
                     <div class="fgig-price">
                             <div class="fgig-price-txt">
-                                <h3>Starting from :</h3>
+                                <h3>Gig price :</h3>
                                 <h1><span>lkr </span><%= gigData.price %></h1>
                             </div>
                             
@@ -87,7 +139,12 @@
                                     <!-- <button type="submit" class="dgig-btnBuy" onclick="handleBuyNow()">Buy Now</button> -->
                                    <% if(currentUser) {%> 
                                     <% if (currentUser.id != gigData.userId) { %>
-                                        <form action="/order/payment/<%= gigData.id %>" method="POST">
+                                        <form action="/order/payment/<%= gigData.id %>" method="POST"  style="display:flex; flex-direction:column;">
+                                            <h5 style="text-align: center; color: gray;">Add order description below before order</h5>
+                                            <textarea placeholder="Add order description" name="message" cols="10" rows="17" style="margin-bottom:10px; padding: 20px; width: 300px; outline: none; resize: none;" maxlength="768">
+                                                
+                                            </textarea>
+                    
                                             <script 
                                             src="//checkout.stripe.com/v2/checkout.js"
                                             class="stripe-button"
@@ -98,6 +155,7 @@
                                             data-name="<%= gigData.title %>"
                                             data-Locale="auto"
                                             data-email="janakachamith88@gmail.com"
+                                
                                             ></script>
                                         </form>
                                     <% }%>

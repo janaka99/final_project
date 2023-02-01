@@ -189,10 +189,16 @@ router.post(
             const urls = [];
             const nprice = Number(req.body.price);
             const sqlQuery1 =
-              "INSERT INTO gig(title,description,price,userId) values(?,?,?,?)";
+              "INSERT INTO gig(title,description,price,userId,duration) values(?,?,?,?,?)";
             Con.query(
               sqlQuery1,
-              [req.body.title, req.body.description, nprice, req.user.id],
+              [
+                req.body.title,
+                req.body.description,
+                nprice,
+                req.user.id,
+                req.user.duration,
+              ],
               async (err, result) => {
                 if (err) {
                   console.log(err);
@@ -273,13 +279,37 @@ router.get("/add-new-gig", isLoggedIn, (req, res) => {
   res.render("gig/addnewgig");
 });
 
+const getRemainDays = (createdAt, duration) => {
+  const nowTime = new Date();
+
+  let createdTime = new Date(createdAt);
+  const createdD = new Date(createdAt);
+
+  createdTime = createdTime.setDate(createdTime.getDate() + duration);
+  var dDate = new Date(createdTime);
+  console.log(createdTime, "   ", createdD);
+
+  var differece = (nowTime.getTime() - createdD.getTime()) / 1000;
+
+  var days = Math.floor(differece / 86400);
+  differece -= days * 86400;
+
+  var hours = Math.floor(differece / 3600) % 24;
+  differece -= hours * 3600;
+
+  var minutes = Math.floor(differece / 60) % 60;
+  differece -= minutes * 60;
+
+  console.log(days, " ", hours, " ", minutes);
+};
+
 router.get("/view/:id", (req, res) => {
   const gigId = req.params.id;
   if (gigId == null || gigId === undefined) {
     res.render("404error");
   } else {
     Con.query(
-      "SELECT gig.title, gig.price,gig.userId,gig.id, gig.description , User.username, profilePictures.img_url from gig left outer join User  on User.id=gig.userId left outer join profilePictures on profilePictures.userId=gig.userId where gig.id=" +
+      "SELECT count(Feedback.id) as F_count, gig.title, gig.price,gig.userId,gig.id, gig.description , User.username, profilePictures.img_url from gig left outer join User  on User.id=gig.userId left outer join Feedback on Feedback.gigId=gig.id left outer join profilePictures on profilePictures.userId=gig.userId where gig.id=" +
         gigId +
         ";",
       (err, result) => {
@@ -287,7 +317,7 @@ router.get("/view/:id", (req, res) => {
           res.render("404error");
         } else {
           const gigData = result[0];
-          console.log(gigData);
+
           Con.query(
             "SELECT * FROM gigImages where gigId=" + gigId + ";",
             (err, result) => {
@@ -296,7 +326,7 @@ router.get("/view/:id", (req, res) => {
               } else {
                 const gigImages = result;
                 Con.query(
-                  "select date(F.created_at) as d ,F.rating,F.description , U.username , P.img_url from Feedback as F join User as U on F.buyerId=U.id inner join profilePictures as P on P.userId=F.buyerId where F.buyerId=U.id and gigId=" +
+                  "select year(F.created_at) as y ,month(F.created_at) as m ,day(F.created_at) as d ,F.rating,F.description , U.username , P.img_url from Feedback as F join User as U on F.buyerId=U.id inner join profilePictures as P on P.userId=F.buyerId where F.buyerId=U.id and gigId=" +
                     gigId +
                     "",
                   (err, result) => {
@@ -308,7 +338,6 @@ router.get("/view/:id", (req, res) => {
                         feedbacks: null,
                       });
                     } else {
-                      console.log(result);
                       res.render("gig/view", {
                         gigImages,
                         gigData,

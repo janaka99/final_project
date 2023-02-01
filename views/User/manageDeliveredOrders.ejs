@@ -23,24 +23,23 @@
                         <h1 class="orders-title">Delivered orders as seller</title>
                         <table collspacing="10" colpadding="10" border="1">
                             <colgroup>
-                                <col style="width:10%">
-                                <col style="width: 45%">
-                                <col style="width:15%">
-                                <col style="width:10%">
-                                <!-- <col style="width:20%"> -->
+                                <col style="width:20%">
+                                <col style="width: 55%">
+                                <col style="width:25%">
+   
                             </colgroup>
                             <tr>
                                 <th>order id</th>
                                 <th>order title</th>
                                 <th>price</th>
-                                <th>time left</th>
+    
                             </tr>
                             <% for( let i = 0; i < orders.length; i++ ) { %>
                                 <tr>
                                     <td><%= orders[i].id %> </td>
-                                    <td><%= orders[i].id %> </td>
+                                    <td><%= orders[i].title %> </td>
                                     <td><%= orders[i].price %> </td>
-                                    <td><%= orders[i].id %> </td>                          
+                                                 
                                 </tr>
                             <% } %>
                 

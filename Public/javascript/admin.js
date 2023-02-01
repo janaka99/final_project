@@ -14,9 +14,6 @@ adminLayoutHeaderButton[0].addEventListener("click", () => {
 
 //Hide Admin Settings Dropdown when clicked away on the screen
 document.addEventListener("click", (event) => {
-  console.log(event.target);
-  console.log("clicked");
-
   if (
     !profileBox[0].contains(event.target) &&
     !adminLayoutHeaderButton[0].contains(event.target)

@@ -20,27 +20,24 @@
         <table collspacing="10" colpadding="10" border="1">
             <colgroup>
                 <col style="width:10%">
-                <col style="width: 45%">
+                <col style="width: 55%">
                 <col style="width:15%">
-                <col style="width:10%">
                 <col style="width:20%">
             </colgroup>
             <tr>
                 <th>order id</th>
                 <th>order title</th>
                 <th>price</th>
-                <th>time left</th>
                 <th></th>
             </tr>
             <% for( let i = 0; i < orders.length; i++ ) { %>
                 <tr>
                     <td><%= orders[i].id %> </td>
-                    <td><%= orders[i].id %> </td>
+                    <td><%= orders[i].title %> </td>
                     <td><%= orders[i].price %> </td>
-                    <td><%= orders[i].id %> </td>
                     <td>
-                        <button onclick="" id="download-btn-orders">Deliver</button>
-                        <button  id="com-order-btn">Complete Order</button>
+                        <a href="<%= orders[i].imgurl %>"> View</a>          
+                        <button  class="com-order-btn">Complete Order</button>
                     </td>
                 </tr>
                 <div class="orders-complete-window">
@@ -77,19 +74,27 @@
 
     <script  src="javascript/header.js"></script>
     <script>
-        const completeOrderBtn = document.getElementById("com-order-btn")
+        const completeOrderBtn = document.getElementsByClassName("com-order-btn")
         const completeDiv = document.getElementsByClassName("orders-complete-window")[0]
 
         const completeOrderForm = document.getElementsByClassName("orders-complete-window-div")[0]
   
-        completeDiv.addEventListener("click",()=>{
+
+        for(let i=0; i < completeOrderBtn.length ; i++){
+            completeDiv.addEventListener("click",()=>{
             if (!completeOrderForm.contains(event.target)) {
                 completeDiv.classList.remove("hide-deliver");
             }
         })
-        completeOrderBtn.addEventListener("click",()=>{
+
+            completeOrderBtn[i].addEventListener("click",()=>{
             completeDiv.classList.add("hide-deliver");
         })
+        }
+
+
+
+
 
     </script>
     <script src="/javascript/admin.js"></script>

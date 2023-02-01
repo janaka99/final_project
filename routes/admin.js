@@ -18,15 +18,32 @@ router.get("/dashboard", isEmployeeOrAdmin, (req, res) => {
       res.redirect("/");
     } else {
       const balance = results[0].total;
-      Con.query("select count(id) as od from Orders", (err, results) => {
-        if (err) {
-          req.flash("error", "Something went wrong try again");
-          res.redirect("/");
-        } else {
-          console.log(balance, " ", results[0].od);
-          res.render("Admin/Home", { balance, tOrders: results[0].od });
+      Con.query(
+        "select count(id) as od from Orders where status='completed' ",
+        (err, results) => {
+          if (err) {
+            req.flash("error", "Something went wrong try again");
+            res.redirect("/");
+          } else {
+            let totalOrders = results[0].od;
+            Con.query(
+              "select count(id) as od from Orders where status='started' ",
+              (err, results) => {
+                if (err) {
+                  req.flash("error", "Something went wrong try again");
+                  res.redirect("/");
+                } else {
+                  res.render("Admin/Home", {
+                    balance,
+                    totalCompletedOrders: totalOrders,
+                    totalOngoingOrders: results[0].od,
+                  });
+                }
+              }
+            );
+          }
         }
-      });
+      );
     }
   });
 });
@@ -197,7 +214,19 @@ router.get(
           res.redirect("admin/dashboard/pending-gig-approvals");
         } else {
           const gig = result[0];
-          res.render("Admin/gigApprovalView", { gig });
+
+          Con.query(
+            "select * from gigImages where gigId=" + id + "",
+            (err, result) => {
+              if (err) {
+                res.redirect("admin/dashboard/pending-gig-approvals");
+              } else {
+                const images = result;
+                console.log(images);
+                res.render("Admin/gigApprovalView", { gig, images });
+              }
+            }
+          );
         }
       }
     );
@@ -219,7 +248,18 @@ router.get(
           res.redirect("admin/dashboard/active-gigs");
         } else {
           const gig = result[0];
-          res.render("Admin/gigApprovalView", { gig });
+          Con.query(
+            "select * from gigImages where gigId=" + id + "",
+            (err, result) => {
+              if (err) {
+                res.redirect("admin/dashboard/pending-gig-approvals");
+              } else {
+                const images = result;
+                console.log(images);
+                res.render("Admin/gigApprovalView", { gig, images });
+              }
+            }
+          );
         }
       }
     );
@@ -241,7 +281,18 @@ router.get(
           res.redirect("admin/dashboard/rejected-gigs");
         } else {
           const gig = result[0];
-          res.render("Admin/gigApprovalView", { gig });
+          Con.query(
+            "select * from gigImages where gigId=" + id + "",
+            (err, result) => {
+              if (err) {
+                res.redirect("admin/dashboard/pending-gig-approvals");
+              } else {
+                const images = result;
+                console.log(images);
+                res.render("Admin/gigApprovalView", { gig, images });
+              }
+            }
+          );
         }
       }
     );

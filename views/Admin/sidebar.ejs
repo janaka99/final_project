@@ -47,7 +47,13 @@
                     <div class="admin-layout-header-content" style="z-index: 11111;">
                         <div class="admin-layout-header-content-profile">
                             <div class="admin-layout-header-content-profile-image">
-                                <img src="" alt="">
+                                <% if (currentUser.img_url == null) { %>
+                                    <img src="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" alt="">
+                                <% } else{%>
+
+                                <img src="<%= currentUser.img_url %> " alt="">
+
+                                <% } %> 
                             </div>
                             <!-- <div class="admin-layout-header-content-profile-upperArrow"></div> -->
                             <ul>

@@ -83,8 +83,11 @@
             <% } %> 
         </div>
         
-        <button class="up-add-new-gig"><a href="/gig/add-new-gig">Add New Gig</a></button>
 
+        <% if(currentUser){%> 
+            <button class="up-add-new-gig"><a href="/gig/add-new-gig">Add New Gig</a></button>
+
+        <% } %> 
     </div>
     
     <%- include("../partials/footer.ejs") %> 

@@ -35,16 +35,23 @@
             <% for( let i = 0; i < orders.length; i++ ) { %>
                 <tr>
                     <td><%= orders[i].id %> </td>
-                    <td><%= orders[i].id %> </td>
+                    <td><%= orders[i].title %> </td>
                     <td><%= orders[i].price %> </td>
-                    <td><%= orders[i].id %> </td>
+                    <% if (orders[i].createdAt.days < 0) { %>
+                        <td style="color: red;"><%= orders[i].createdAt.days %>.<%= orders[i].createdAt.hours %>.<%= orders[i].createdAt.minutes %> </td>
+                    <% } else {%>
+                        <td><%= orders[i].createdAt.days %>.<%= orders[i].createdAt.hours %>.<%= orders[i].createdAt.minutes %> </td>
+                    <% } %> 
                     <td><button onclick="handleDeliverOrder( orders[i].id )" id="deliver-btn-orders">Deliver</button></td>
                 </tr>
                 <div class="orders-deliver-window">
                     <div class="orders-deliver-window-div">
+                        <h5 style="font-size: 12px; padding: 4px 0;">Supported file types: jPeg | png | jpg</h5>
+
                         <form action="/order/deliver-order/<%= orders[i].id %>" method="POST" enctype="multipart/form-data">
+                            
                             <input type="file" name="orderFile" />
-                            <label for="">Description</label>
+                            <label style="font-size: 16px;"  for="">Description</label>
                             <textarea name="description" id="" cols="30" rows="10" name="descriptin"></textarea>
                             <button type="submit">Deliver</button>
                         </form>

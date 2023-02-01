@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="/stylesheets/adminTemplate.css">
+    <link rel="stylesheet" href="/stylesheets/header.css">
     <link rel="stylesheet" href="/stylesheets/adminhome.css">
     <link rel="stylesheet" href="/stylesheets/adminsidebar.css">
     <link rel="stylesheet" href="/stylesheets/adminManageEmployee.css">
@@ -50,7 +51,13 @@
                     <div class="admin-layout-header-content" style="z-index: 1111;">
                         <div class="admin-layout-header-content-profile">
                             <div class="admin-layout-header-content-profile-image">
+                                <% if (currentUser.img_url == null) { %>
+                                    <img src="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png" alt="">
+                                <% } else{%>
+
                                 <img src="<%= currentUser.img_url %> " alt="">
+
+                                <% } %> 
                             </div>
                             <!-- <div class="admin-layout-header-content-profile-upperArrow"></div> -->
                             <ul>
@@ -74,3 +81,26 @@
                         </div>
                     </div>
                 </div>
+                <% if (error != "" || success != "") { %>
+                    <div class="err-success-msg " id="err-success-click">
+                        <% if (error != "") { %>
+                            <div class="err-msg-container ">
+                                <h4 class="err-msg"><%= error %> </h4>
+                                <button onclick="handleMsg()">X</button>
+                            </div>
+                        <% } %>
+                        <% if (success != "" ) { %>
+                                <div class="success-msg-container">
+                                    <h4 class="success-msg"><%= success %></h4>
+                                    <button onclick="handleMsg()">X</button>
+                                </div>
+                        <% } %>
+                    </div>
+                <% } %>
+                
+                <script>
+                    const handleMsg =  function() {
+                      const cl =   document.getElementById("err-success-click");
+                      cl.style.display = "none";
+                    }
+                </script>
