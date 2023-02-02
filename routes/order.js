@@ -17,7 +17,7 @@ const getRemainDays = (createdAt, duration) => {
   createdTime = createdTime.setDate(createdTime.getDate() + duration);
   createdTime = new Date(createdTime);
   var differece = (nowTime.getTime() - createdTime.getTime()) / 1000;
-
+  console.log("date ", nowTime.getTime(), "  ", createdTime);
   var days = Math.floor(differece / 86400);
   differece -= days * 86400;
 
@@ -164,6 +164,7 @@ router.post("/payment/:id", isLoggedIn, async (req, res) => {
                     console.log("Asdas", rs);
                     console.log(gig.price);
                     const newPendingClearance = rs + gig.price;
+                    console.log(newPendingClearance);
                     Con.query(
                       "update User set pending_clearance=" +
                         newPendingClearance +
@@ -189,10 +190,11 @@ router.post("/payment/:id", isLoggedIn, async (req, res) => {
 router.get("/my-orders/delivered", isLoggedIn, (req, res) => {
   try {
     const id = req.user.id;
+    console.log(id);
     const query1 =
       "select orders.*, gig.title, deliveredImages.img_url as imgurl  from orders left outer join gig on gig.id=orders.gigId left outer join deliveredImages on deliveredImages.orderId=orders.id where orders.buyerId=" +
       id +
-      " and orders.status='started' or orders.status='delivered'";
+      " and orders.status='delivered'";
     Con.query(query1, (err, result) => {
       if (err) {
         console.log(err);
@@ -293,7 +295,7 @@ router.post("/deliver-order/:id", (req, res) => {
                         res.redirect("back");
                       } else {
                         req.flash("Success", "Delivered successfull");
-                        res.redirect("/gig/my-orders/delivered");
+                        res.redirect("/order/orders/delivered");
                       }
                     });
                   }
@@ -354,8 +356,10 @@ router.post("/complete-order/:id", isLoggedIn, (req, res) => {
                     res.redirect("/order/my-orders/delivered");
                   } else {
                     const rs = result[0];
-                    const newBalance = rs.balance + price;
-                    const newPendingClearance = rs.pending_clearance - price;
+                    const oPrice = parseFloat(price);
+                    const newBalance = rs.balance + oPrice;
+                    const newPendingClearance = rs.pending_clearance - oPrice;
+                    console.log(newBalance, newPendingClearance);
                     Con.query(
                       "update User set pending_clearance=" +
                         newPendingClearance +
@@ -366,7 +370,7 @@ router.post("/complete-order/:id", isLoggedIn, (req, res) => {
                         ""
                     );
 
-                    res.redirect("/order/my-orders/delivered");
+                    res.redirect("/order/my-orders/completed");
                   }
                 }
               );

@@ -18,7 +18,7 @@ router.post("/find", async (req, res) => {
   if (searchQuery === undefined || searchQuery == "") {
     Con.query(
       "select  gig.* , gigImages.img_url as p_url,User.id as Uid, User.username as username,profilePictures.img_url as img_url  " +
-        "from gig left join User on User.id=gig.userId left join profilePictures on profilePictures.userId=gig.Userid left join gigImages on gig.id=gigImages.id where " +
+        "from gig left join User on User.id=gig.userId left join profilePictures on profilePictures.userId=gig.Userid left join gigImages on gigImages.gigId=gig.id where gigImages.id=(select id from gigImages where gigId=gig.id limit 1) and" +
         "  gig.status='approved'",
       (err, result) => {
         if (err) {
@@ -44,7 +44,7 @@ router.post("/find", async (req, res) => {
     console.log(string);
     const sqlQuery =
       "select  gig.* , gigImages.img_url as p_url,User.id as Uid, User.username as username,profilePictures.img_url as img_url " +
-      "from gig left join User on User.id=gig.userId left join profilePictures on profilePictures.userId=gig.Userid left join gigImages on gig.id=gigImages.id where (" +
+      "from gig left join User on User.id=gig.userId left outer join profilePictures on profilePictures.userId=gig.Userid left outer join gigImages on gigImages.gigId=gig.id where gigImages.id=(select id from gigImages where gigId=gig.id limit 1) and (" +
       string +
       " ) and gig.status='approved'   limit 20";
     Con.query(sqlQuery, (err, results) => {
@@ -197,7 +197,7 @@ router.post(
                 req.body.description,
                 nprice,
                 req.user.id,
-                req.user.duration,
+                req.body.duration,
               ],
               async (err, result) => {
                 if (err) {

@@ -29,19 +29,15 @@
                 <th>order id</th>
                 <th>order title</th>
                 <th>price</th>
-                <th>time left</th>
+                <th>duration</th>
                 <th></th>
             </tr>
             <% for( let i = 0; i < orders.length; i++ ) { %>
-                <tr>
+                <tr style="font-size: 14px;">
                     <td><%= orders[i].id %> </td>
                     <td><%= orders[i].title %> </td>
                     <td><%= orders[i].price %> </td>
-                    <% if (orders[i].createdAt.days < 0) { %>
-                        <td style="color: red;"><%= orders[i].createdAt.days %>.<%= orders[i].createdAt.hours %>.<%= orders[i].createdAt.minutes %> </td>
-                    <% } else {%>
-                        <td><%= orders[i].createdAt.days %>.<%= orders[i].createdAt.hours %>.<%= orders[i].createdAt.minutes %> </td>
-                    <% } %> 
+                    <td><%= orders[i].duration %></td>
                     <td><button onclick="handleDeliverOrder( orders[i].id )" id="deliver-btn-orders">Deliver</button></td>
                 </tr>
                 <div class="orders-deliver-window">

@@ -30,7 +30,9 @@
             <div class="user-settings-content">
                 <form action="/user/settings/update-profile-picture" method="POST" enctype="multipart/form-data">
                 <input type="file" name="image">
-                <button type="submit">save</button>
+                <div class="user-settings-table-button">
+                <button type="submit">save Changes</button>
+            </div>
             </form>
             </div>
             <div class="user-settings-content">
@@ -89,6 +91,22 @@
                         <label for="">Province</label>
                         <label type="text" value="<%= user.province %> "><%= user.province %></label>
                         <div></div>
+                        <select name="province" id="">
+                            <option value="central">Central</option>
+                            <option value="eastern">eastern</option>
+                            <option value="northern">northern</option>
+                            <option value="southern">southern</option>
+                            <option value="western">western</option>
+                            <option value="north western">north western</option>
+                            <option value="north central">north central</option>
+                            <option value="uva">uva</option>
+                            <option value="sabaragamuwa">sabaragamuwa</option>
+                        </select>
+                    </div>
+                    <div class="user-settings-table-item">
+                        <label for="">District</label>
+                        <label type="text" value="<%= user.district %> "><%= user.district %></label>
+                        <div></div>
                         <select name="district" id="" >
                             <option value="kandy">Kandy</option>
                             <option value="ampara">Ampara</option>
@@ -116,22 +134,7 @@
                             <option value="trincomalee">Trincomalee</option>
                             <option value="vavuniya">Vavuniya</option>
                         </select>
-                    </div>
-                    <div class="user-settings-table-item">
-                        <label for="">District</label>
-                        <label type="text" value="<%= user.district %> "><%= user.district %></label>
-                        <div></div>
-                        <select name="province" id="">
-                            <option value="central">Central</option>
-                            <option value="eastern">eastern</option>
-                            <option value="northern">northern</option>
-                            <option value="southern">southern</option>
-                            <option value="western">western</option>
-                            <option value="north western">north western</option>
-                            <option value="north central">north central</option>
-                            <option value="uva">uva</option>
-                            <option value="sabaragamuwa">sabaragamuwa</option>
-                        </select>
+
                     </div>
                     <div class="user-settings-table-item">
                         <label for="">Address 1</label>

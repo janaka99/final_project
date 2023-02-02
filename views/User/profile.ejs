@@ -57,6 +57,10 @@
                             <% } %> 
                 </div>
             </div>
+            <% if(currentUser){%> 
+                <button class="up-add-new-gig"><a href="/gig/add-new-gig">Add New Gig</a></button>
+    
+            <% } %> 
         </div>
         <div class="up-orders-container">
             <% for(let i=0 ; i < gigs.length ; i++) {%> 
@@ -74,7 +78,6 @@
                         <h4><%= profile.username%></h4>
                     </div>
                     <p><%= gigs[i].title %></p>
-                    <h4><span>(4) </span> Feedbacks</h4>
                 </div>
                 <hr color="lightgray">
                 <h3><span>Starting at </span>Lkr: <%= gigs[i].price %></h3>
@@ -84,10 +87,7 @@
         </div>
         
 
-        <% if(currentUser){%> 
-            <button class="up-add-new-gig"><a href="/gig/add-new-gig">Add New Gig</a></button>
 
-        <% } %> 
     </div>
     
     <%- include("../partials/footer.ejs") %> 

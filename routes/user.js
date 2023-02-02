@@ -301,7 +301,7 @@ router.get("/profile", isLoggedIn, (req, res) => {
 
       const profile = result[0];
       const query2 =
-        "select  gig.title, gig.description,gig.feedbackCount, gig.price, gig.id,gigImages.img_url from gig inner join gigImages inner join Feedback where " +
+        "select  gig.title, gig.description,gig.feedbackCount, gig.price, gig.id,gigImages.img_url from gig left outer join gigImages on gigImages.gigId=gig.id  where " +
         "gigImages.gigId=gig.id and gigImages.id=(select id from gigImages where gigId=gig.id limit 1) and gig.userId=? ";
 
       Con.query(query2, [id], (err, result) => {
@@ -401,7 +401,7 @@ router.post("/forgot-password", async (req, res) => {
                   "success",
                   "Password reset email successfully sent to your email"
                 );
-                res.redirect("back");
+                res.redirect("/user/login");
               }
             });
           }
@@ -485,7 +485,7 @@ router.post("/reset/reset-password/:token", async (req, res) => {
                   const sqlQuery6 = `DELETE FROM verificationTokens WHERE token='${token}' and tokenType='passwordreset'`;
                   Con.query(sqlQuery6);
                   req.flash("sucess", "Password reset successful Please Login");
-                  res.render("login");
+                  res.redirect("/user/login");
                 }
               });
             }
@@ -649,7 +649,7 @@ router.post(
               res.redirect("back");
             } else {
               console.log(result);
-              req.flash("success", "SuccessFully Updated! Please Login again");
+              req.flash("success", "SuccessFully Updated!");
               res.redirect("back");
             }
           }

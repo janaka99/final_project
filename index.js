@@ -3,6 +3,7 @@ const path = require("path");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const { Con } = require("./connection/mysql");
 
 const app = express();
 require("dotenv").config();
@@ -43,13 +44,16 @@ const orderRoutes = require("./routes/order");
 //   password: "",
 // });
 
-//connect to mysql
-// db.connect((err) => {
+// //connect to mysql
+// Con.connect((err) => {
 //   if (err) {
 //     throw err;
 //   }
 //   console.log("database connected");
 // });
+
+console.log(process.env.DATABASE_USER);
+console.log(process.env.DATABASE_PASSWORD);
 
 app.use(function (req, res, next) {
   res.locals.currentUser = req.session.accessToken;
